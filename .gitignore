@@ -1,0 +1,13 @@
+# Credential guard — NEVER commit secrets
+.env
+*.env
+*.key
+*.pem
+id_rsa
+id_ed25519
+credentials*
+secrets*
+auth.json
+*.token
+wallet*
+*_priv*
