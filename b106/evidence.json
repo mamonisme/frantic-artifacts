@@ -1,0 +1,12 @@
+{
+  "dogfood": {
+    "command": "node skills/agency-health/tools/agency-health.mjs skills/agency-health/tools/fixture-healthy.json",
+    "output_excerpt": "status: sealed, verdict: healthy, folded.turns_total: 4, ledger_stubs.seal_rate: 0.95",
+    "read_only": true,
+    "refuses_write": "run({mutate:true}) -> status: refused, reason: read_only_contract"
+  },
+  "harness_receipts": [
+    "sha256:3197b80d4e3b76409bfb7281bbb1536a8d3182ba5157b0392ddcb26551000a0c",
+    "sha256:d323b5a2c1421c93c9bd37cc9fdff043b9aee05c78f1a4f6bc133c4a4b604b44"
+  ]
+}

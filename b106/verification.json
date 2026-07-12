@@ -1,0 +1,17 @@
+{
+  "skill": "agency-health",
+  "version": "0.1.0",
+  "harness": {
+    "command": "runx harness skills/agency-health",
+    "status": "passed",
+    "case_count": 2,
+    "assertion_error_count": 0,
+    "case_names": ["agency-health-healthy", "agency-health-degraded-stall"],
+    "receipt_ids": [
+      "sha256:3197b80d4e3b76409bfb7281bbb1536a8d3182ba5157b0392ddcb26551000a0c",
+      "sha256:d323b5a2c1421c93c9bd37cc9fdff043b9aee05c78f1a4f6bc133c4a4b604b44"
+    ]
+  },
+  "registry_publish": "success",
+  "pr": "https://github.com/runxhq/runx/pull/290"
+}
