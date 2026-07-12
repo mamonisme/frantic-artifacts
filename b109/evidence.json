@@ -1,0 +1,9 @@
+{
+  "dogfood": {
+    "command": "node skills/purchase-approval/tools/purchase-approval.mjs (fixture: request amt=1200 scope=software budget=5000)",
+    "output_excerpt": "decision: approve_in_full, attenuation_request.amount: 1200",
+    "decision_gate": true,
+    "refuses_spend": "run({spend:true}) -> status: refused, reason: decision_gate_only"
+  },
+  "harness_receipts": ["sha256:36cda173682e11907de9f5966546a6fed7c24bc2f90655027b51e2d68b3bf65d","sha256:77a19682732978a803c2731c008fcb9a0ce18c8853b3b400f14fedcd9534ec6e","sha256:b0c329154f8f22e9e01d920a753a9097958c1f4db46023565cbb6d22658e63be"]
+}

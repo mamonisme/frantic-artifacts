@@ -1,0 +1,14 @@
+{
+  "skill": "purchase-approval",
+  "version": "0.1.0",
+  "harness": {
+    "command": "runx harness skills/purchase-approval",
+    "status": "passed",
+    "case_count": 3,
+    "assertion_error_count": 0,
+    "case_names": ["purchase-approval-approve","purchase-approval-scopedown","purchase-approval-deny"],
+    "receipt_ids": ["sha256:36cda173682e11907de9f5966546a6fed7c24bc2f90655027b51e2d68b3bf65d","sha256:77a19682732978a803c2731c008fcb9a0ce18c8853b3b400f14fedcd9534ec6e","sha256:b0c329154f8f22e9e01d920a753a9097958c1f4db46023565cbb6d22658e63be"]
+  },
+  "registry_publish": "success",
+  "pr": "https://github.com/runxhq/runx/pull/301"
+}
