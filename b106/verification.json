@@ -8,9 +8,10 @@
     "assertion_error_count": 0,
     "case_names": ["agency-health-healthy", "agency-health-degraded-stall"],
     "receipt_ids": [
-      "sha256:3197b80d4e3b76409bfb7281bbb1536a8d3182ba5157b0392ddcb26551000a0c",
-      "sha256:d323b5a2c1421c93c9bd37cc9fdff043b9aee05c78f1a4f6bc133c4a4b604b44"
-    ]
+      "sha256:61f68364a57630a65e539b3555633447f7221ee3a8d6332467b238adb2ab4688",
+      "sha256:17ed39e4cf226176c404fb914e805c8df280037848ae582f403306f16456376d"
+    ],
+    "verified_at": "2026-07-12T18:23:00Z"
   },
   "registry_publish": "success",
   "pr": "https://github.com/runxhq/runx/pull/290"
