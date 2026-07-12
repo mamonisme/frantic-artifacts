@@ -1,0 +1,17 @@
+# scafld project configuration
+#
+# Keep this file sparse. Runtime defaults live in the scafld binary; the full
+# example shape lives in .scafld/core/config.yaml.
+#
+# Put only project-specific invariant IDs, execution environment, review
+# defaults, or review-pass overrides here. Use scafld config for
+# evidence-backed suggestions before tightening this file.
+
+version: "1.0"
+
+invariants:
+  canonical: {}
+
+execution:
+  path_prepend: []
+  env: {}

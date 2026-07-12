@@ -1,0 +1,71 @@
+{
+  "body": {
+    "schema_version": 1,
+    "task_id": "frantic-index",
+    "session_id": "frantic-index",
+    "verdict": "pass",
+    "snapshot_mode": "base_delta",
+    "base_ref": "d1d233752463d7d07887948de4740ed59e8b0be8",
+    "base_commit": "d1d233752463d7d07887948de4740ed59e8b0be8",
+    "head_commit": "d1d233752463d7d07887948de4740ed59e8b0be8",
+    "scope": [
+      "BOUNTIES.md"
+    ],
+    "tree_sha": "1a98bd154c82e24edb8bcd9fb156835ed6c314ba",
+    "file_digests": {
+      "BOUNTIES.md": "84163fddaa630464b013f09162ee20a5ceb144410147c0dfc8b820e888a71c2b"
+    },
+    "ignored_unreviewed": [],
+    "reviewed_context_provenance": [
+      {
+        "kind": "evidence_file",
+        "path": "BOUNTIES.md",
+        "sha256": "84163fddaa630464b013f09162ee20a5ceb144410147c0dfc8b820e888a71c2b",
+        "bytes": 453
+      }
+    ],
+    "reviewer": {
+      "provider": "codex",
+      "model": "gpt-5.5",
+      "binary_sha256": "7ac1bc8e20065e27f61556129d571275b1aa919171b86efcc00850b1ec63337e",
+      "endpoint_host": "api.openai.com"
+    },
+    "host_under_review": {
+      "agent": "unknown",
+      "session_id": "frantic-index"
+    },
+    "independence": {
+      "level": "isolation_only",
+      "distinct": false,
+      "downgraded": "unknown_host",
+      "reason": "isolation_only: reviewer \"codex\" ran in an isolated path, but the host vendor was not detected so cross_vendor separation is not proven"
+    },
+    "spec_fingerprint": "6ee4e2c9b2a218b9ca64d1aa223a034430becd2e93a3c12092643d774baff91f",
+    "acceptance_declared": true,
+    "acceptance": [
+      {
+        "id": "ac1",
+        "command": "test -s BOUNTIES.md \u0026\u0026 grep -q 'Frantic Bounty Index' BOUNTIES.md \u0026\u0026 echo OK",
+        "expected_kind": "exit_code_zero",
+        "status": "pass",
+        "reason": "exit code was 0",
+        "output_sha256": "a12b7cb43c9d9134b5bb1b35e9096b66775d9e92e7611d1cc92b02edd6782a87",
+        "diagnostic": "/root/workspace/frantic-artifacts/.scafld/runs/frantic-index/diagnostics/command-1783850811750735244.txt"
+      }
+    ],
+    "open_blockers": [],
+    "mutation_guard": {
+      "status": "clean",
+      "scope": [
+        "BOUNTIES.md"
+      ]
+    },
+    "ledger_head": "b1dc94316daa1da56397c7e68dd29d9c475609652440961b893e9d93a7d5c0eb",
+    "minted_at": "2026-07-12T10:06:51Z"
+  },
+  "signature": {
+    "alg": "ed25519",
+    "key_id": "ed25519:ZFplVb7eaBMQsP0pX6yERZ5w7pHBSkU7Crok4TmiKSM",
+    "sig": "XpMzFWMX/4fI1gGNjzurfju2bTmAJ42QKXER4B86Ont7RJdIT5KdQL/bKpmDqduurmS/ytK76VsHvgiae4PGAg=="
+  }
+}
