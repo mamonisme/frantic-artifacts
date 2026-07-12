@@ -1,0 +1,39 @@
+{
+  "summary": "Reproduced and fixed a substantial scafld bug: ContractDigest included the volatile PlanningLog field (per-event timestamps), so two byte-identical contracts differing only in a planning-log timestamp produced different digests. This caused reviewgate.staleReviewAuthority to falsely flag valid, unchanged reviews as review_stale_after_spec, forcing spurious re-reviews and blocking 'scafld complete'.",
+  "observations": [
+    {
+      "type": "bug_location",
+      "file": "internal/core/spec/model.go",
+      "field": "Model.PlanningLog",
+      "note": "PlanningLog was included in the ContractDigest struct, making the digest sensitive to volatile projection timestamps."
+    },
+    {
+      "type": "fix_commit",
+      "sha": "1941ca5974dd40afcfb952b9e056299126e54d6e",
+      "repo": "github.com/mamonisme/scafld",
+      "pr": "https://github.com/nilstate/scafld/pull/10",
+      "note": "Removed PlanningLog from the digest struct."
+    },
+    {
+      "type": "regression_tests",
+      "file": "internal/core/spec/contract_digest_test.go",
+      "tests": [
+        "TestContractDigestStableAcrossPlanningLogTimestamp",
+        "TestContractDigestChangesWhenContractChanges"
+      ],
+      "result": "both PASS"
+    },
+    {
+      "type": "test_run",
+      "command": "go test ./internal/core/spec/ -run TestContractDigest -v",
+      "output": "=== RUN   TestContractDigestStableAcrossPlanningLogTimestamp\n--- PASS: TestContractDigestStableAcrossPlanningLogTimestamp (0.00s)\n=== RUN   TestContractDigestChangesWhenContractChanges\n--- PASS: TestContractDigestChangesWhenContractChanges (0.00s)\nPASS\nok  github.com/nilstate/scafld/v2/internal/core/spec",
+      "note": "Runx harness (cli-tool runner) over the fix branch emits a sealed receipt proving reproduction + fix."
+    },
+    {
+      "type": "runx_receipt",
+      "receipt_ref": "runx:receipt:sha256:51c745d5d50b7057ed8d2cb3c3519f8165a848260d7779a57dd88d3554b109e8",
+      "skill": "scafld-contract-digest-bug",
+      "status": "sealed"
+    }
+  ]
+}
