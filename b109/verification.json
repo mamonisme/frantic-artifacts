@@ -6,8 +6,17 @@
     "status": "passed",
     "case_count": 3,
     "assertion_error_count": 0,
-    "case_names": ["purchase-approval-approve","purchase-approval-scopedown","purchase-approval-deny"],
-    "receipt_ids": ["sha256:36cda173682e11907de9f5966546a6fed7c24bc2f90655027b51e2d68b3bf65d","sha256:77a19682732978a803c2731c008fcb9a0ce18c8853b3b400f14fedcd9534ec6e","sha256:b0c329154f8f22e9e01d920a753a9097958c1f4db46023565cbb6d22658e63be"]
+    "case_names": [
+      "purchase-approval-approve",
+      "purchase-approval-scopedown",
+      "purchase-approval-deny"
+    ],
+    "receipt_ids": [
+      "sha256:9f20dd69676ed16a3fbeb259ee709f6a3ae29cad8fd89b4a0ac832bc6f71ffaf",
+      "sha256:24c5be50ca316e4187a80d19acec9a27aea64207f0806d5643ca6761497eae3e",
+      "sha256:16c9f7a2c05640f4eaed9eb4eee9be234f27c6a4a7fe93f3911eb0c585ff3fc8"
+    ],
+    "verified_at": "2026-07-12T18:55:00Z"
   },
   "registry_publish": "success",
   "pr": "https://github.com/runxhq/runx/pull/301"
