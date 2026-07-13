@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "harness": {
     "command": "runx harness skills/agency-health",
-    "status": "passed",
-    "case_count": 2,
+    "status": "passed_happy_path",
+    "case_count": 3,
+    "passed_count": 2,
     "assertion_error_count": 0,
-    "case_names": ["agency-health-healthy", "agency-health-degraded-stall"],
+    "case_names": ["agency-health-healthy", "agency-health-degraded-stall", "agency-health-ledger-blocked(NEGATIVE: stop-case not emittable in local harness; see note)"],
     "receipt_ids": [
-      "sha256:61f68364a57630a65e539b3555633447f7221ee3a8d6332467b238adb2ab4688",
-      "sha256:17ed39e4cf226176c404fb914e805c8df280037848ae582f403306f16456376d"
+      "sha256:65adbd702cf12f348640b585a18293fb000ab59c75171554568a60aa66108ce7",
+      "sha256:be1bc110ce9beeeb7a09fd660aa6f4fca6aa230c21ce08b6c4d8d22795827db3"
     ],
-    "verified_at": "2026-07-12T18:23:00Z"
+    "verified_at": "2026-07-12T21:30:00Z"
   },
-  "registry_publish": "success",
-  "pr": "https://github.com/runxhq/runx/pull/290"
+  "registry_publish": "local_success_remote_blocked_negative_case",
+  "pr": "https://github.com/runxhq/runx/pull/290",
+  "commit": "6eff047496efffe54e65d0c76022a55a3370ef5e",
+  "note": "Happy-path harness GREEN (2/2). Remote publish requires 1 stop/negative case; graph runner cannot emit policy_denied/failure/needs_agent without a registered provider/authority in local harness. Fallback: public_url uses raw GitHub tree (Mitigation A per frantic-runx-bounty)."
 }
