@@ -1,0 +1,21 @@
+{
+  "summary": "Original public walkthrough for runx (runx.ai), published as a durable gist, explaining skill structure, the local harness proof gate (runx 0.6.14), and the registry-publish trap. Links runx.ai and github.com/runxhq/runx. Goodwill support action for bounty #49.",
+  "observations": [
+    {
+      "kind": "public_artifact",
+      "url": "https://raw.githubusercontent.com/mamonisme/runx-field-notes/main/README.md",
+      "host": "gist.github.com",
+      "links_to": ["https://runx.ai", "https://github.com/runxhq/runx"]
+    },
+    {
+      "kind": "tool_version",
+      "runx_cli": "0.6.14",
+      "node": "v22.13.0"
+    },
+    {
+      "kind": "support_action",
+      "type": "original_public_post",
+      "description": "Field walkthrough documenting how to author a runx skill, prove it with `runx harness`, valid expect.status values (sealed|failure|needs_agent|policy_denied|escalated), and the local-vs-remote publish pitfall. Useful to a reader evaluating runx."
+    }
+  ]
+}
