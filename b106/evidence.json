@@ -8,13 +8,17 @@
     },
     {
       "type": "dogfood",
-      "command": "node skills/agency-health/tools/agency-health.mjs skills/agency-health/tools/fixture-healthy.json",
-      "output": "status: sealed, verdict: healthy, folded.turns_total: 4, ledger_stubs.seal_rate: 0.95 \u2014 dogfood run exercises the real read-only health fold end to end."
+      "dogfood": {
+        "command": "node skills/agency-health/tools/agency-health.mjs skills/agency-health/tools/fixture-healthy.json",
+        "output": "status: sealed, verdict: healthy, folded.turns_total: 4, ledger_stubs.seal_rate: 0.95 — dogfood run exercises the real read-only health fold end to end."
+      }
     },
     {
       "type": "dogfood",
-      "command": "node skills/agency-health/tools/agency-health.mjs skills/agency-health/tools/fixture-degraded.json",
-      "output": "status: sealed, verdict: degraded, folded.turns_total: 7, intervention_findings: [improve-skill:retry-policy, ops-desk:stale-turn-alert] \u2014 second dogfood run proves the degraded grading path."
+      "dogfood": {
+        "command": "node skills/agency-health/tools/agency-health.mjs skills/agency-health/tools/fixture-degraded.json",
+        "output": "status: sealed, verdict: degraded, folded.turns_total: 7, intervention_findings: [improve-skill:retry-policy, ops-desk:stale-turn-alert] — second dogfood run proves the degraded grading path."
+      }
     },
     {
       "type": "read_only_guard",
