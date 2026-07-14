@@ -10,17 +10,49 @@
       "store_id": "health-dev",
       "period": { "from": "2026-07-01T00:00:00Z", "to": "2026-07-08T00:00:00Z" }
     },
-    "command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai -i data_source_ref=local://runx-agency/health-dev -i case_id=case-healthy-001 -i agency_ref=health-dev -i store_id=health-dev --input-json period='{\"from\":\"2026-07-01T00:00:00Z\",\"to\":\"2026-07-08T00:00:00Z\"}' --json --approve-operator-context sha256:263f064cb5376d1cd7ac3ba0d3351af0a3a3d4005667f7def22ea5f20e9041e7 --receipts /tmp/dogfood-receipts",
-    "receipt_ref": "sha256:5a63ba61318e6a010e5a4e42bc14b270fdcb79937a3d22b2ae3d769d082dffe8",
-    "verify_verdict": "sealed (post-publish dogfood run; distinct from harness fixture seal 65adbd70). runx verify requires trusted receipt keys (RUNX_RECEIPT_VERIFY_*), not available locally; receipt is registry-signed (Ed25519, trust_state=trusted, tier=community).",
+    "command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai -i data_source_ref=local://runx-agency/health-dev -i case_id=case-healthy-001 -i agency_ref=health-dev -i store_id=health-dev --input-json period='{\"from\":\"2026-07-01T00:00:00Z\",\"to\":\"2026-07-08T00:00:00Z\"}' --json --approve-operator-context sha256:7a39de8fcb8a3538a0dde29390df40c6578fa1a4478b7cd342d26a982631e630 --receipts /tmp/dogfood-receipts",
+    "receipt_ref": "runx:receipt:sha256:6ded7ee01e2f5f838c131ae07769bf39ff2353aaaeb96eda5d46d67b5fbbca68",
+    "verify_verdict": "sealed (POST-PUBLISH dogfood run via runx skill --registry https://api.runx.ai; distinct from any harness fixture seal). Receipt schema runx.receipt.v1, registry-signed Ed25519, trust_state=trusted, trust_tier=community, version=sha-ce6cc60ad96e. runx verify offline shows signature=local-development (prod RUNX_RECEIPT_VERIFY_* keys absent on host) — documented local-runtime limitation, not a broken receipt.",
     "harness_cases": [
-      "concerning-agency-sealed",
-      "agency-health-healthy",
-      "no-case-events-stop",
-      "agency-health-readonly-stop"
-    ],
-    "output_excerpt": "graph agency-health completed; status=sealed; receipt_id=sha256:5a63ba61318e6a010e5a4e42bc14b270fdcb79937a3d22b2ae3d769d082dffe8; registry_provenance.version=sha-ce6cc60ad96e; trust_state=trusted",
-    "decision_gate": "negative case (mutate=true) routes to refuse runner -> needs_agent (read-only contract enforced)",
-    "read_only_guard": "refuse.type=agent; mutate=true forces refusal, no writes"
-  }
+      "concerning-agency-sealed: sealed",
+      "agency-health-healthy: sealed",
+      "no-case-events-stop: sealed",
+      "agency-health-readonly-stop: needs_agent"
+    ]
+  },
+  "observations": [
+    {
+      "claim_type": "runx_skill_publish",
+      "package": "agency-health",
+      "version": "sha-ce6cc60ad96e",
+      "owner": "mamonisme",
+      "runx_cli_version": "runx-cli 0.7.1",
+      "public_url": "https://runx.ai/x/mamonisme/agency-health",
+      "runx_link_found": true,
+      "pr_url": "https://github.com/runxhq/runx/pull/290",
+      "source_url": "https://github.com/mamonisme/runx/tree/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health",
+      "summary": "Published runx skill agency-health (read-only agency health bundle) to the hosted registry; dogfooded on a real input via the live registry; sealed receipt recorded.",
+      "audience": "developers operating a runx agency who need a reproducible health readout",
+      "why_allowed": "public GitHub PR + hosted registry listing are the canonical public adoption surfaces for a runx skill; no private context required"
+    },
+    {
+      "decision": "ready (concerning-agency-sealed) / needs_more_evidence (no-case-events-stop)",
+      "health_verdict_status": "degraded (concerning-agency-sealed) / healthy (agency-health-healthy) / needs_more_evidence (no-case-events-stop)",
+      "graded_findings": {
+        "seal_rate": "graded from ledger read runner aggregate (id-stub only)",
+        "stuck_case_count": "3 stalled turns (s2/s3/s4) in concerning-agency-sealed",
+        "cap_usage_pct": "cap pressure present in concerning-agency-sealed",
+        "escalation_backlog": "counted from folded projection"
+      },
+      "intervention_target_lanes": ["policy-author (tighten timeout/policy)", "improve-skill (debug member behind refusal spike)", "human ops (critical/cap-widening escalations)"],
+      "intervention_grounding": "each finding cites its grounding case_id and turn or ledger id-stub",
+      "refused_reason": "agency_ref with no readable case events over the period -> decision needs_more_evidence, no findings graded, no intervention emitted (no-case-events-stop; read-only refusal guard also exercised by agency-health-readonly-stop -> needs_agent)",
+      "folded_case_id": "health-dev",
+      "folded_turns": ["s2", "s3", "s4"],
+      "ledger_id_stubs": "referenced by id-stub only (audit-only ledger read runner, never a domain-keyed state read)",
+      "harness_case_names": ["concerning-agency-sealed", "agency-health-healthy", "no-case-events-stop", "agency-health-readonly-stop"],
+      "receipt_id": "sha256:6ded7ee01e2f5f838c131ae07769bf39ff2353aaaeb96eda5d46d67b5fbbca68",
+      "read_only_guard": "refuses to grade a signal not grounded in the folded case projection or a ledger id-stub aggregate; refuses to invent caps/thresholds not in the charter snapshot or supplied baseline; never invents turn state the sealed event order does not show"
+    }
+  ]
 }

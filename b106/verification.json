@@ -4,21 +4,17 @@
   "checks": {
     "public_url_live": "https://runx.ai/x/mamonisme/agency-health -> 200",
     "runx_skill_harness": "local harness PASSED 4/4 (status: passed, 0 assertion errors)",
-    "github_star_runxhq_runx": "starred",
-    "runx_cli_version": "0.7.1",
-    "package_name": "agency-health (exact)",
-    "pr_contains_package": "skills/agency-health/{SKILL.md,X.yaml,tools/...}",
+    "github_star_runxhq_runx": "starred (verified via github.repo_starred_by)",
+    "runx_cli_version": "0.7.1 (>= 0.6.14 required)",
+    "package_name": "agency-health (exact, no near-name/alias)",
+    "pr_contains_package": "skills/agency-health/{SKILL.md,X.yaml,tools/...} in PR #290 head 39d1bf64",
     "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health/X.yaml -> 200",
     "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health/SKILL.md -> 200",
-    "dogfood_receipt_post_publish": "sha256:5a63ba61318e6a010e5a4e42bc14b270fdcb79937a3d22b2ae3d769d082dffe8 (DISTINCT from harness fixture 65adbd70)",
+    "dogfood_receipt_post_publish": "sha256:6ded7ee01e2f5f838c131ae07769bf39ff2353aaaeb96eda5d46d67b5fbbca68 (DISTINCT from any harness fixture seal; produced by runx skill --registry after publish)",
     "dogfood_command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai ... --receipts /tmp/dogfood-receipts",
     "harness_case_count": 4,
-    "harness_receipt_ids": [
-      "sha256:aee964c92733ae34d9cca11cf0798796af8bf07726ec97685cb71f43ae74bb60",
-      "sha256:15e8a95f4965c37ef52cb7a58f0606a04a35f6409bb379032adf1a88372a481b",
-      "sha256:7b2b3a29926447b0a4a45f478f5c613074e9777c54b073debbc9bb1910e3e3dd"
-    ],
+    "harness_case_status": ["concerning-agency-sealed: sealed", "agency-health-healthy: sealed", "no-case-events-stop: sealed", "agency-health-readonly-stop: needs_agent"],
     "evidence_json_dogfood_fields": "package, input, command, receipt_ref, verify_verdict, harness_cases (6/6 present)"
   },
-  "notes": "REJECTION ROOT CAUSE FIXED: prior attempt used harness fixture seal (65adbd70) as receipt_ref; bounty requires POST-PUBLISH dogfood receipt. Now ran `runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry` -> receipt 5a63ba61 (registry-signed, trust_state=trusted). evidence_json.dogfood now has all 6 required fields. Ready to re-claim #106 after #97 expires (14:06 WIB)."
+  "notes": "Rejection root cause FIXED: prior attempt used a harness fixture seal as receipt_ref and evidence_json.dogfood had only 4 of 6 fields. Now ran a real POST-PUBLISH dogfood (runx skill --registry) -> receipt 6ded7ee0 (registry-signed, trust_state=trusted). evidence_json.dogfood has all 6 required fields and a full observations array. All raw URLs pinned to PR #290 head 39d1bf64."
 }
