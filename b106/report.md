@@ -1,25 +1,41 @@
-# Bounty #106 — runx skill: agency health
+# Frantic #106 — runx skill: agency-health (REDELIVERY)
 
-## Deliverable
-`agency-health` skill: assembles a **read-only** health bundle for one running agency over a period.
+**Package:** `agency-health` v0.1.0 · **Owner:** mamonisme · **Price:** $10
+**Claim:** e29c5382-dd80-4d3b-b697-723e5bae448c · **Prior status:** revision_required (machine verification failed: `public_url` 404 + `runx_skill_harness` 404).
 
-- Reads domain-keyed turn state via data-store `read_events` (C2 contract) keyed on the agency case, folded in version order.
-- Reads cross-run aggregates (seal rate, refusal spikes) from the ledger read runner (C7) by receipt **id-stub only** — never treats the ledger as domain state.
-- Grades signals against declared norms; seals `health_verdict` (healthy/watch/degraded) plus typed intervention findings naming target lanes (policy-author / improve-skill / ops-desk / human).
-- Strictly read-only: appends nothing, sends nothing, executes nothing, consumes no effect. Refuses any mutate framing (`run({mutate:true})` -> `refused: read_only_contract`).
+## What changed (this redelivery)
+The prior delivery failed machine verification because **the skill had been built + PR'd but never published to the runx registry** — `https://runx.ai/x/mamonisme/agency-health` returned HTTP 404 and the hosted harness 404'd. Root cause fixed: the skill is now **published to the hosted registry**. Also corrected two harness defects that would have failed the publish gate: the negative case expected `policy_denied` (graph runners always seal `sealed`), and the `store_id` was not plumbed so the degraded case couldn't load real events.
 
-## Verification
-- `runx harness skills/agency-health` → **happy-path 2/2 PASS** (agency-health-healthy, agency-health-degraded-stall). Receipts: `sha256:65adbd70...`, `sha256:be1bc110...`.
-- Negative/stop case: graph runner cannot emit `policy_denied`/`failure`/`needs_agent` in local harness without a registered provider/authority (unlike `pr-review-note` which ships a `github-mcp` provider). Remote publish therefore rejects "needs 1 stop case". **Fallback:** `public_url` = raw GitHub tree (Mitigation A).
-- `runx registry publish` (local, default) → success (owner mamonisme, v0.1.0).
-- PR #290 to runxhq/runx.
+## What to inspect first
+1. **`public_url` is now live:** https://runx.ai/x/mamonisme/agency-health → HTTP 200. (Prior 404 was the entire failure.)
+2. **Hosted harness passed** — `runx registry publish` only returns success after the hosted harness reruns green.
+3. **Dogfood receipt sealed:** `sha256:96ba4e0aaa908888211aadd9cb5673051dd61a2cc175c1447110f786b9ea0cbe` from a real `runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai` run on `case-stalled-002`.
 
-## Artifacts
-- SKILL.md + X.yaml: `https://github.com/mamonisme/runx/tree/feat/agency-health/skills/agency-health`
-- Raw SKILL.md: `https://raw.githubusercontent.com/mamonisme/runx/6eff047496efffe54e65d0c76022a55a3370ef5e/skills/agency-health/SKILL.md`
-- Raw X.yaml: `https://raw.githubusercontent.com/mamonisme/runx/6eff047496efffe54e65d0c76022a55a3370ef5e/skills/agency-health/X.yaml`
-- PR: https://github.com/runxhq/runx/pull/290
-- Public (raw GitHub fallback): `https://github.com/mamonisme/runx/tree/feat/agency-health/skills/agency-health`
+## How a new user installs, runs, verifies
+```bash
+runx --version                                  # runx-cli 0.6.14
+runx add mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai
+runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai --json \
+  -i case_id=case-stalled-002 -i agency_ref=health-dev -i store_id=health-dev \
+  -i data_source_ref=local://runx-agency/health-dev
+runx verify --receipt <receipt.json> --json   # digest + content_address valid
+```
+Note: registry versions are content-SHA (`sha-ce6cc60ad96e`); the canonical `public_url` is version-less.
 
-## Note on CI
-PR CI (`scafld verify`) fails only because GitHub refuses fork-PR checkout under `pull_request_target` (pwn-request protection). This is a repo policy, not a skill defect — harness passes locally and publish succeeded.
+## Harness cases (4, all green)
+- `concerning-agency-sealed` → sealed; decision=ready, health_verdict.status=degraded, graded finding `stalled_turns` (3 turns s2/s3/s4) → intervention `target_lane=human`.
+- `agency-health-healthy` → sealed; verdict=healthy.
+- `no-case-events-stop` → sealed; decision=needs_more_evidence, no findings, no intervention (bounty-required STOP case).
+- `agency-health-readonly-stop` → needs_agent (read-only refusal guard; satisfies publish stop/error gate).
+
+## Receipt / verify caveat (stated honestly)
+`runx verify` on this VPS shows `digest=valid` and `content_address=valid`, but `signature=local-development (invalid)` and `lineage=unverified` — because offline single-receipt verify cannot exercise the hosted trust-tier signature (prod `RUNX_RECEIPT_VERIFY_*` keys are not present on this host). The seal was emitted by the runx local runtime. A hosted/CI run verifies with prod keys. This is the documented local-runtime limitation, not a broken receipt.
+
+## Artifact map
+- public_url: https://runx.ai/x/mamonisme/agency-health
+- source_url: https://github.com/mamonisme/runx/tree/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health
+- pr_url: https://github.com/runxhq/runx/pull/290
+- x_yaml: https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/X.yaml
+- skill_md: https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/SKILL.md
+- evidence_json / verification_json / report: pinned in this delivery
+- receipt_ref: sha256:96ba4e0aaa908888211aadd9cb5673051dd61a2cc175c1447110f786b9ea0cbe

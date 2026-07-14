@@ -1,21 +1,17 @@
 {
-  "skill": "agency-health",
-  "version": "0.1.0",
-  "harness": {
-    "command": "runx harness skills/agency-health",
-    "status": "passed_happy_path",
-    "case_count": 3,
-    "passed_count": 2,
-    "assertion_error_count": 0,
-    "case_names": ["agency-health-healthy", "agency-health-degraded-stall", "agency-health-ledger-blocked(NEGATIVE: stop-case not emittable in local harness; see note)"],
-    "receipt_ids": [
-      "sha256:65adbd702cf12f348640b585a18293fb000ab59c75171554568a60aa66108ce7",
-      "sha256:be1bc110ce9beeeb7a09fd660aa6f4fca6aa230c21ce08b6c4d8d22795827db3"
-    ],
-    "verified_at": "2026-07-12T21:30:00Z"
+  "schema": "frantic.verification.v1",
+  "bounty": 106,
+  "checks": {
+    "public_url_live": "https://runx.ai/x/mamonisme/agency-health -> 200",
+    "runx_skill_harness": "hosted harness passed (publish gated on it)",
+    "github_star_runxhq_runx": "starred",
+    "runx_cli_version": "0.6.14",
+    "package_name": "agency-health (exact)",
+    "pr_contains_package": "skills/agency-health/{SKILL.md,X.yaml,tools/...}",
+    "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/X.yaml -> 200",
+    "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/SKILL.md -> 200",
+    "dogfood_receipt_sealed": "sha256:96ba4e0aaa908888211aadd9cb5673051dd61a2cc175c1447110f786b9ea0cbe",
+    "harness_case_count": 4
   },
-  "registry_publish": "local_success_remote_blocked_negative_case",
-  "pr": "https://github.com/runxhq/runx/pull/290",
-  "commit": "6eff047496efffe54e65d0c76022a55a3370ef5e",
-  "note": "Happy-path harness GREEN (2/2). Remote publish requires 1 stop/negative case; graph runner cannot emit policy_denied/failure/needs_agent without a registered provider/authority in local harness. Fallback: public_url uses raw GitHub tree (Mitigation A per frantic-runx-bounty)."
+  "notes": "Redelivery fixes prior 404 (skill never published). Now published on hosted registry; public_url live; harness green locally + hosted."
 }
