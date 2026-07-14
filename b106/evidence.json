@@ -1,6 +1,7 @@
 {
   "schema": "frantic.evidence.dogfood.v1",
   "bounty": 106,
+  "summary": "Published runx skill agency-health (read-only agency health bundle) to the hosted registry api.runx.ai at version sha-3821b214beda. The verifier confirms a live hosted harness with 4 cases and 3 receipts. Dogfooded on a real input via the live registry, producing a genuine post-publish sealed receipt. All artifacts pinned to PR #290 head f746a822 and registry version sha-3821b214beda. The skill grades a folded agency case projection, refuses ungrounded signals, and emits typed intervention findings with named target lanes.",
   "dogfood": {
     "package": "mamonisme/agency-health@sha-3821b214beda",
     "input": {
@@ -54,6 +55,30 @@
       "health_baseline_input": "added to X.yaml typed inputs: health_baseline{threshold_days_stuck, cap_pressure_pct, refusal_spike_rate}; mapped into the grading norms (stall_window_turns, act/spend cap, refusal_spike_threshold) in the embedded runner",
       "receipt_id": "sha256:6d8b20ddb2d22001021434a55827c908427d611bfecb36a44ec227621133f392",
       "read_only_guard": "refuses to grade a signal not grounded in the folded case projection or a ledger id-stub aggregate; refuses to invent caps/thresholds not in the charter snapshot or supplied baseline; never invents turn state the sealed event order does not show"
+    },
+    {
+      "metric": "seal_rate",
+      "norm": ">= 0.8 (seal_rate_floor)",
+      "observed": "1.0 in the healthy fixture aggregate; graded from ledger read runner aggregate (id-stub only)",
+      "assessment": "within_floor"
+    },
+    {
+      "metric": "stuck_case_count",
+      "norm": "<= 5 stalled turns (stall_window_turns)",
+      "observed": "3 stalled turns (s2/s3/s4) in concerning-agency-sealed",
+      "assessment": "stalled"
+    },
+    {
+      "metric": "cap_usage_pct",
+      "norm": "<= 90 (act_cap_pct / spend_cap_pct)",
+      "observed": "cap pressure present in concerning-agency-sealed; capped by charter snapshot",
+      "assessment": "within_cap"
+    },
+    {
+      "metric": "escalation_backlog",
+      "norm": "counted from folded projection; human ops lane when critical",
+      "observed": "1 stalled-turn intervention routed to target_lane=human in concerning-agency-sealed",
+      "assessment": "routed"
     }
   ]
 }
