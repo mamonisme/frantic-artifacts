@@ -1,32 +1,27 @@
 {
-  "summary": "Original public walkthrough for runx (runx.ai), published as a durable public repo, explaining skill structure, the local harness proof gate (runx 0.6.14), and the registry-publish trap. Links runx.ai and github.com/runxhq/runx, and stars the upstream repo for discovery. Goodwill support action for bounty #49.",
+  "summary": "Goodwill bounty #49: continued verifiable contribution to runx + Frantic ecosystem.",
   "observations": [
     {
-      "kind": "public_artifact",
-      "url": "https://raw.githubusercontent.com/mamonisme/runx-field-notes/main/README.md",
-      "host": "github.com",
-      "links_to": ["https://runx.ai", "https://github.com/runxhq/runx"]
+      "type": "registry_publish",
+      "url": "https://runx.ai/x/mamonisme/agency-health@sha-aaa2df49e81f",
+      "note": "agency-health skill published to live runx registry"
     },
     {
-      "kind": "tool_version",
-      "runx_cli": "0.6.14",
-      "node": "v22.13.0"
+      "type": "pr",
+      "url": "https://github.com/runxhq/runx/pull/290",
+      "note": "agency-health skill PR to upstream runx"
     },
     {
-      "kind": "support_action",
-      "type": "original_public_post",
-      "description": "Field walkthrough documenting how to author a runx skill, prove it with `runx harness`, valid expect.status values (sealed|failure|needs_agent|policy_denied|escalated), and the local-vs-remote publish pitfall. Useful to a reader evaluating runx."
+      "type": "pr",
+      "url": "https://github.com/runxhq/runx/pull/301",
+      "note": "purchase-approval skill PR to upstream runx"
     },
     {
-      "kind": "discovery_action",
-      "type": "repo_star",
-      "target": "https://github.com/runxhq/runx",
-      "description": "Starred the upstream runx repo so more developers discover the project. Authenticated GitHub star (HTTP 204)."
-    },
-    {
-      "kind": "repo_link",
-      "url": "https://github.com/mamonisme/runx-field-notes",
-      "description": "Durable public repo hosting the walkthrough (README) and this evidence file, reachable by a stranger."
+      "type": "delivery",
+      "url": "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b106/report.md",
+      "note": "Frantic #106 delivered (agency-health), accepted pending review"
     }
-  ]
+  ],
+  "claim_type": "goodwill",
+  "receipt_ref": "runx:receipt:goodwill-49"
 }
