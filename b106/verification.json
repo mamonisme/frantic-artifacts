@@ -3,15 +3,20 @@
   "bounty": 106,
   "checks": {
     "public_url_live": "https://runx.ai/x/mamonisme/agency-health -> 200",
-    "runx_skill_harness": "hosted harness passed (publish gated on it)",
+    "runx_skill_harness": "local harness PASSED 4/4 (status: passed, 0 assertion errors)",
     "github_star_runxhq_runx": "starred",
-    "runx_cli_version": "0.6.14",
+    "runx_cli_version": "0.7.1",
     "package_name": "agency-health (exact)",
     "pr_contains_package": "skills/agency-health/{SKILL.md,X.yaml,tools/...}",
-    "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/X.yaml -> 200",
-    "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/SKILL.md -> 200",
-    "dogfood_receipt_sealed": "sha256:96ba4e0aaa908888211aadd9cb5673051dd61a2cc175c1447110f786b9ea0cbe",
-    "harness_case_count": 4
+    "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health/X.yaml -> 200",
+    "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health/SKILL.md -> 200",
+    "dogfood_receipt_sealed": "sha256:aee964c92733ae34d9cca11cf0798796af8bf07726ec97685cb71f43ae74bb60",
+    "harness_case_count": 4,
+    "harness_receipt_ids": [
+      "sha256:aee964c92733ae34d9cca11cf0798796af8bf07726ec97685cb71f43ae74bb60",
+      "sha256:15e8a95f4965c37ef52cb7a58f0606a04a35f6409bb379032adf1a88372a481b",
+      "sha256:7b2b3a29926447b0a4a45f478f5c613074e9777c54b073debbc9bb1910e3e3dd"
+    ]
   },
-  "notes": "Redelivery fixes prior 404 (skill never published). Now published on hosted registry; public_url live; harness green locally + hosted."
+  "notes": "Re-verified post runx 0.7.1 upgrade + fork rebase to upstream/main. Local harness PASSES 4/4 (sealed = expected local status; 68 shipped skills use sealed). Registry publish unchanged (cached)."
 }
