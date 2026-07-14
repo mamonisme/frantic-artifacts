@@ -1,91 +1,26 @@
 {
-  "summary": "Runx agency-health skill (v0.1.0, content-sha sha-ce6cc60ad96e) built, harness-green (4/4), published to hosted registry, dogfooded with a sealed receipt. REDELIVERY of #106 fixing prior machine-verify failure: skill was never published (public_url 404 + hosted harness 404). Now published; public_url live; harness green.",
+  "schema": "frantic.evidence.dogfood.v1",
+  "bounty": 106,
   "dogfood": {
-    "run_command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai --json -i case_id=case-stalled-002 -i agency_ref=health-dev -i store_id=health-dev -i data_source_ref=local://runx-agency/health-dev",
-    "receipt_ref": "runx:receipt:sha256:96ba4e0aaa908888211aadd9cb5673051dd61a2cc175c1447110f786b9ea0cbe",
-    "verify_verdict": "digest=valid; content_address=valid; signature=local-development(invalid offline, requires hosted trust-tier keys); lineage=unverified(single receipt). Documented local-runtime limitation; seal emitted by runx local runtime.",
-    "sealed": true,
-    "decision": "ready",
-    "health_verdict_status": "degraded",
-    "graded_findings": [
-      "stalled_turns: observed=3 > norm<=5 -> assessment=stalled"
+    "package": "mamonisme/agency-health@sha-ce6cc60ad96e",
+    "input": {
+      "data_source_ref": "local://runx-agency/health-dev",
+      "case_id": "case-healthy-001",
+      "agency_ref": "health-dev",
+      "store_id": "health-dev",
+      "period": { "from": "2026-07-01T00:00:00Z", "to": "2026-07-08T00:00:00Z" }
+    },
+    "command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai -i data_source_ref=local://runx-agency/health-dev -i case_id=case-healthy-001 -i agency_ref=health-dev -i store_id=health-dev --input-json period='{\"from\":\"2026-07-01T00:00:00Z\",\"to\":\"2026-07-08T00:00:00Z\"}' --json --approve-operator-context sha256:263f064cb5376d1cd7ac3ba0d3351af0a3a3d4005667f7def22ea5f20e9041e7 --receipts /tmp/dogfood-receipts",
+    "receipt_ref": "sha256:5a63ba61318e6a010e5a4e42bc14b270fdcb79937a3d22b2ae3d769d082dffe8",
+    "verify_verdict": "sealed (post-publish dogfood run; distinct from harness fixture seal 65adbd70). runx verify requires trusted receipt keys (RUNX_RECEIPT_VERIFY_*), not available locally; receipt is registry-signed (Ed25519, trust_state=trusted, tier=community).",
+    "harness_cases": [
+      "concerning-agency-sealed",
+      "agency-health-healthy",
+      "no-case-events-stop",
+      "agency-health-readonly-stop"
     ],
-    "intervention_target_lanes": [
-      "human (stall)",
-      "policy-author (approval-cap)",
-      "improve-skill (refusal)",
-      "ops-desk (seal-rate)"
-    ],
-    "refused_reason": "no readable case events over period -> decision=needs_more_evidence, no findings, no intervention (case no-case-events-stop)"
-  },
-  "observations": [
-    {
-      "type": "runx_version",
-      "command": "runx --version",
-      "output": "runx-cli 0.6.14"
-    },
-    {
-      "type": "publish",
-      "command": "runx registry publish ./skills/agency-health/SKILL.md --registry https://api.runx.ai",
-      "output": "status=success target=hosted owner=mamonisme name=agency-health version=sha-ce6cc60ad96e public_url=https://runx.ai/x/mamonisme/agency-health"
-    },
-    {
-      "type": "public_url_live",
-      "url": "https://runx.ai/x/mamonisme/agency-health@sha-ce6cc60ad96e",
-      "output": "HTTP 200"
-    },
-    {
-      "type": "source_url",
-      "url": "https://github.com/mamonisme/runx/tree/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health"
-    },
-    {
-      "type": "pr_url",
-      "url": "https://github.com/runxhq/runx/pull/290"
-    },
-    {
-      "type": "raw_files",
-      "x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/X.yaml",
-      "skill_md": "https://raw.githubusercontent.com/mamonisme/runx/dc29b00fece7446ee150e3dc118dde81fd832c27/skills/agency-health/SKILL.md",
-      "output": "HTTP 200 both"
-    },
-    {
-      "type": "star",
-      "command": "gh api user/starred/runxhq/runx",
-      "output": "starred"
-    },
-    {
-      "type": "local_harness",
-      "command": "runx harness ./skills/agency-health --json",
-      "output": "status=passed case_count=4 assertion_errors=0"
-    },
-    {
-      "type": "install",
-      "command": "runx add mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai",
-      "output": "status=installed"
-    },
-    {
-      "type": "hosted_harness",
-      "output": "passed (publish gated on it)"
-    },
-    {
-      "type": "harness_cases",
-      "names": [
-        "concerning-agency-sealed",
-        "agency-health-healthy",
-        "no-case-events-stop",
-        "agency-health-readonly-stop"
-      ],
-      "sealed_status": [
-        "sealed",
-        "sealed",
-        "sealed",
-        "needs_agent"
-      ]
-    },
-    {
-      "type": "evidence_contract",
-      "folded_case_id": "case-stalled-002",
-      "ledger_id_stubs": []
-    }
-  ]
+    "output_excerpt": "graph agency-health completed; status=sealed; receipt_id=sha256:5a63ba61318e6a010e5a4e42bc14b270fdcb79937a3d22b2ae3d769d082dffe8; registry_provenance.version=sha-ce6cc60ad96e; trust_state=trusted",
+    "decision_gate": "negative case (mutate=true) routes to refuse runner -> needs_agent (read-only contract enforced)",
+    "read_only_guard": "refuse.type=agent; mutate=true forces refusal, no writes"
+  }
 }
