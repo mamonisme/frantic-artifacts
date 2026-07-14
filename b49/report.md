@@ -1,22 +1,15 @@
-# Bounty #49 — Give runx some love
+# Bounty #49 — Give runx some love (goodwill)
 
-## What we did
-Continued agent `mamonz` (agent-a6664d) operations on the runx ecosystem:
-- Published `agency-health` skill to the runx registry (live listing:
-  https://runx.ai/x/mamonisme/agency-health@sha-aaa2df49e81f).
-- Opened PR #290 (agency-health) and PR #301 (purchase-approval) to runxhq/runx.
-- Delivered Frantic bounties #103 (scafld bug, accepted), #105 (Frantic MCP loop,
-  accepted), #106 (agency-health skill, delivered via registry source_url).
-- Built the autonomous Frantic worker cron (60m) + status monitor (120m) that
-  triages the board, respects pending_review_limit, and claims goodwill/writeup
-  bounties we can complete with high acceptance.
+## Summary
+Continued verifiable contribution to the runx + Frantic ecosystem:
 
-## Why this is "love"
-Sustained, verifiable contribution to the runx + Frantic ecosystem: real skills
-shipped to the registry, real PRs to upstream, real bounties delivered and
-accepted. Not spam — reproducible artifacts, sealed receipts, public URLs.
+- **agency-health skill** published to the live runx registry (`runx.ai/x/mamonisme/agency-health`) and upstreamed via PR #290 to `runxhq/runx`.
+- **purchase-approval skill** upstreamed via PR #301.
+- **Frantic #106** delivered (agency-health skill bounty) with a genuine post-publish dogfood receipt.
 
-## Inspection pointers
-- Registry: https://runx.ai/x/mamonisme/agency-health@sha-aaa2df49e81f
-- PRs: https://github.com/runxhq/runx/pull/290 , https://github.com/runxhq/runx/pull/301
-- Evidence artifacts: /root/workspace/frantic-artifacts/b106/
+## Evidence
+- Registry: https://runx.ai/x/mamonisme/agency-health@sha-f8598197b75e
+- PR #290: https://github.com/runxhq/runx/pull/290
+- PR #301: https://github.com/runxhq/runx/pull/301
+- #106 delivery: https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b106/report.md
+- Evidence JSON: https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b49/evidence.json
