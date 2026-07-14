@@ -1,0 +1,47 @@
+skill: frantic-board-check
+version: "0.1.0"
+catalog:
+  kind: skill
+  audience: public
+  visibility: public
+  role: context
+runners:
+  default:
+    default: true
+    type: cli-tool
+    command: /usr/bin/env
+    args:
+      - bash
+      - run.sh
+    scopes:
+      - network.read
+    policy:
+      reads:
+        - public Frantic board JSON over HTTPS
+      calls:
+        - GET https://gofrantic.com/v1/board
+      writes:
+        - board_snapshot.json
+      disallows:
+        - any mutation
+        - any authentication
+    inputs:
+      board_url:
+        type: string
+        required: false
+        default: https://gofrantic.com/v1/board
+        description: Frantic board API URL.
+    outputs:
+      board_snapshot: object
+      open_bounties: integer
+      live_host: string
+harness:
+  cases:
+    - name: board-sealed
+      inputs:
+        board_url: https://gofrantic.com/v1/board
+      caller:
+        answers:
+          board_url: https://gofrantic.com/v1/board
+      expect:
+        status: sealed

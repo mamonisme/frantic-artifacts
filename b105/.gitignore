@@ -1,0 +1,6 @@
+.env
+*.key
+credentials*
+secrets*
+auth.json
+wallet*
