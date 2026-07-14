@@ -2,19 +2,23 @@
   "schema": "frantic.verification.v1",
   "bounty": 106,
   "checks": {
-    "public_url_live": "https://runx.ai/x/mamonisme/agency-health -> 200",
-    "runx_skill_harness": "local harness PASSED 4/4 (status: passed, 0 assertion errors)",
+    "publish_state": "LIVE — runx registry publish ./skills/agency-health/SKILL.md --registry https://api.runx.ai returned 'registry publish success'; GET https://api.runx.ai/v1/skills/mamonisme/agency-health returns version sha-3821b214beda, trust_state=trusted, trust_tier=community",
+    "public_url_live": "https://runx.ai/x/mamonisme/agency-health@sha-3821b214beda -> 200",
+    "hosted_harness": "verifier confirms live hosted harness at https://api.runx.ai/v1/skills/mamonisme/agency-health/harness with 4 cases; local harness PASSED 4/4 (status: passed, 0 assertion errors)",
     "github_star_runxhq_runx": "starred (verified via github.repo_starred_by)",
     "runx_cli_version": "0.7.1 (>= 0.6.14 required)",
     "package_name": "agency-health (exact, no near-name/alias)",
-    "pr_contains_package": "skills/agency-health/{SKILL.md,X.yaml,tools/...} in PR #290 head 39d1bf64",
-    "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health/X.yaml -> 200",
-    "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health/SKILL.md -> 200",
-    "dogfood_receipt_post_publish": "sha256:6ded7ee01e2f5f838c131ae07769bf39ff2353aaaeb96eda5d46d67b5fbbca68 (DISTINCT from any harness fixture seal; produced by runx skill --registry after publish)",
-    "dogfood_command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai ... --receipts /tmp/dogfood-receipts",
+    "pr_contains_package": "skills/agency-health/{SKILL.md,X.yaml,tools/...} in PR #290 head f746a8228faf770e45c9944eaabdd2fe9e5dbe28",
+    "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/f746a8228faf770e45c9944eaabdd2fe9e5dbe28/skills/agency-health/X.yaml -> 200",
+    "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/f746a8228faf770e45c9944eaabdd2fe9e5dbe28/skills/agency-health/SKILL.md -> 200",
+    "source_url_distinct_from_public_url": "source_url = GitHub tree https://github.com/mamonisme/runx/tree/f746a8228faf770e45c9944eaabdd2fe9e5dbe28/skills/agency-health (provenance); public_url = registry listing https://runx.ai/x/mamonisme/agency-health@sha-3821b214beda (distinct)",
+    "health_baseline_input_present": "X.yaml runners.health.inputs.health_baseline{threshold_days_stuck, cap_pressure_pct, refusal_spike_rate} added and wired into the embedded runner's grading norms",
+    "dogfood_receipt_post_publish": "sha256:6d8b20ddb2d22001021434a55827c908427d611bfecb36a44ec227621133f392 (schema runx.skill_run.v1, run_id run_health_16fe71951297, registry_provenance.remote https://api.runx.ai) — DISTINCT from any harness fixture seal (schema runx.receipt.v1, no run_id/registry_provenance)",
+    "dogfood_command": "runx skill mamonisme/agency-health@sha-3821b214beda --registry https://api.runx.ai ... --receipts /tmp/dogfood-receipts",
+    "runx_verify": "digest=valid, content_address=valid, signature=local-development (prod RUNX_RECEIPT_VERIFY_* keys absent on host; documented local-runtime limitation, not a broken receipt)",
     "harness_case_count": 4,
     "harness_case_status": ["concerning-agency-sealed: sealed", "agency-health-healthy: sealed", "no-case-events-stop: sealed", "agency-health-readonly-stop: needs_agent"],
     "evidence_json_dogfood_fields": "package, input, command, receipt_ref, verify_verdict, harness_cases (6/6 present)"
   },
-  "notes": "Rejection root cause FIXED: prior attempt used a harness fixture seal as receipt_ref and evidence_json.dogfood had only 4 of 6 fields. Now ran a real POST-PUBLISH dogfood (runx skill --registry) -> receipt 6ded7ee0 (registry-signed, trust_state=trusted). evidence_json.dogfood has all 6 required fields and a full observations array. All raw URLs pinned to PR #290 head 39d1bf64."
+  "notes": "All 7 prior rejection items addressed: (1) receipt_ref is now the genuine POST-PUBLISH dogfood run (6d8b20dd), not a harness fixture seal; (2) evidence_json.dogfood has all 6 required fields; (3) all artifacts pinned to PR head f746a822 and version sha-3821b214beda (single revision); (4) source_url is the distinct GitHub provenance tree URL; (5) health_baseline typed input added + mapped; (6) observations expanded with required specifics (seal_rate/stuck_case_count/cap_usage_pct/escalation_backlog, folded case_id+turns, ledger id-stubs, refused reason, exact harness case names); (7) publish state reported accurately as LIVE with install command 'runx add mamonisme/agency-health@sha-3821b214beda'."
 }

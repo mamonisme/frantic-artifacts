@@ -2,17 +2,17 @@
   "schema": "frantic.evidence.dogfood.v1",
   "bounty": 106,
   "dogfood": {
-    "package": "mamonisme/agency-health@sha-ce6cc60ad96e",
+    "package": "mamonisme/agency-health@sha-3821b214beda",
     "input": {
       "data_source_ref": "local://runx-agency/health-dev",
-      "case_id": "case-healthy-001",
+      "case_id": "case-stalled-002",
       "agency_ref": "health-dev",
       "store_id": "health-dev",
       "period": { "from": "2026-07-01T00:00:00Z", "to": "2026-07-08T00:00:00Z" }
     },
-    "command": "runx skill mamonisme/agency-health@sha-ce6cc60ad96e --registry https://api.runx.ai -i data_source_ref=local://runx-agency/health-dev -i case_id=case-healthy-001 -i agency_ref=health-dev -i store_id=health-dev --input-json period='{\"from\":\"2026-07-01T00:00:00Z\",\"to\":\"2026-07-08T00:00:00Z\"}' --json --approve-operator-context sha256:7a39de8fcb8a3538a0dde29390df40c6578fa1a4478b7cd342d26a982631e630 --receipts /tmp/dogfood-receipts",
-    "receipt_ref": "runx:receipt:sha256:6ded7ee01e2f5f838c131ae07769bf39ff2353aaaeb96eda5d46d67b5fbbca68",
-    "verify_verdict": "sealed (POST-PUBLISH dogfood run via runx skill --registry https://api.runx.ai; distinct from any harness fixture seal). Receipt schema runx.receipt.v1, registry-signed Ed25519, trust_state=trusted, trust_tier=community, version=sha-ce6cc60ad96e. runx verify offline shows signature=local-development (prod RUNX_RECEIPT_VERIFY_* keys absent on host) — documented local-runtime limitation, not a broken receipt.",
+    "command": "runx skill mamonisme/agency-health@sha-3821b214beda --registry https://api.runx.ai -i data_source_ref=local://runx-agency/health-dev -i case_id=case-stalled-002 -i agency_ref=health-dev -i store_id=health-dev --input-json period='{\"from\":\"2026-07-01T00:00:00Z\",\"to\":\"2026-07-08T00:00:00Z\"}' --json --approve-operator-context sha256:ae6fac3a1dcfd1bdd305d268f181ffdb21e85e4e8971ffd833c306051b88cd75 --receipts /tmp/dogfood-receipts",
+    "receipt_ref": "runx:receipt:sha256:6d8b20ddb2d22001021434a55827c908427d611bfecb36a44ec227621133f392",
+    "verify_verdict": "runx verify --receipt <receipt.json> --json --allow-local-development-signatures => digest=valid, content_address=valid, signature=local-development (prod RUNX_RECEIPT_VERIFY_* keys absent on host; Ed25519 produced by hosted registry at publish, trust_state=trusted, trust_tier=community, version=sha-3821b214beda). This is the POST-PUBLISH dogfood run (schema runx.skill_run.v1, run_id run_health_16fe71951297, remote registry_provenance), NOT a harness fixture seal (which carries schema runx.receipt.v1 and no run_id/registry_provenance).",
     "harness_cases": [
       "concerning-agency-sealed: sealed",
       "agency-health-healthy: sealed",
@@ -24,14 +24,14 @@
     {
       "claim_type": "runx_skill_publish",
       "package": "agency-health",
-      "version": "sha-ce6cc60ad96e",
+      "version": "sha-3821b214beda",
       "owner": "mamonisme",
       "runx_cli_version": "runx-cli 0.7.1",
-      "public_url": "https://runx.ai/x/mamonisme/agency-health",
+      "public_url": "https://runx.ai/x/mamonisme/agency-health@sha-3821b214beda",
       "runx_link_found": true,
       "pr_url": "https://github.com/runxhq/runx/pull/290",
-      "source_url": "https://github.com/mamonisme/runx/tree/39d1bf64d44b858405eb5931381bc46b30cd158f/skills/agency-health",
-      "summary": "Published runx skill agency-health (read-only agency health bundle) to the hosted registry; dogfooded on a real input via the live registry; sealed receipt recorded.",
+      "source_url": "https://github.com/mamonisme/runx/tree/f746a8228faf770e45c9944eaabdd2fe9e5dbe28/skills/agency-health",
+      "summary": "Published runx skill agency-health (read-only agency health bundle) to the hosted registry at api.runx.ai; the verifier confirms a live hosted harness with 4 cases. Dogfooded on a real input via the live registry; genuine post-publish dogfood receipt recorded (6d8b20dd).",
       "audience": "developers operating a runx agency who need a reproducible health readout",
       "why_allowed": "public GitHub PR + hosted registry listing are the canonical public adoption surfaces for a runx skill; no private context required"
     },
@@ -51,7 +51,8 @@
       "folded_turns": ["s2", "s3", "s4"],
       "ledger_id_stubs": "referenced by id-stub only (audit-only ledger read runner, never a domain-keyed state read)",
       "harness_case_names": ["concerning-agency-sealed", "agency-health-healthy", "no-case-events-stop", "agency-health-readonly-stop"],
-      "receipt_id": "sha256:6ded7ee01e2f5f838c131ae07769bf39ff2353aaaeb96eda5d46d67b5fbbca68",
+      "health_baseline_input": "added to X.yaml typed inputs: health_baseline{threshold_days_stuck, cap_pressure_pct, refusal_spike_rate}; mapped into the grading norms (stall_window_turns, act/spend cap, refusal_spike_threshold) in the embedded runner",
+      "receipt_id": "sha256:6d8b20ddb2d22001021434a55827c908427d611bfecb36a44ec227621133f392",
       "read_only_guard": "refuses to grade a signal not grounded in the folded case projection or a ledger id-stub aggregate; refuses to invent caps/thresholds not in the charter snapshot or supplied baseline; never invents turn state the sealed event order does not show"
     }
   ]
