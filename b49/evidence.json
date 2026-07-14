@@ -1,27 +1,21 @@
 {
-  "summary": "Goodwill bounty #49: continued verifiable contribution to runx + Frantic ecosystem.",
+  "summary": "Goodwill bounty #49: continued verifiable contribution to runx + Frantic ecosystem — published agency-health skill (registry + PR #290), purchase-approval skill (PR #301), and delivered Frantic #106.",
+  "claim_type": "goodwill",
+  "receipt_ref": "runx:receipt:goodwill-49",
   "observations": [
     {
-      "type": "registry_publish",
-      "url": "https://runx.ai/x/mamonisme/agency-health@sha-aaa2df49e81f",
-      "note": "agency-health skill published to live runx registry"
-    },
-    {
-      "type": "pr",
-      "url": "https://github.com/runxhq/runx/pull/290",
-      "note": "agency-health skill PR to upstream runx"
-    },
-    {
-      "type": "pr",
-      "url": "https://github.com/runxhq/runx/pull/301",
-      "note": "purchase-approval skill PR to upstream runx"
-    },
-    {
-      "type": "delivery",
-      "url": "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b106/report.md",
-      "note": "Frantic #106 delivered (agency-health), accepted pending review"
+      "claim_type": "original_public_walkthrough",
+      "public_url": "https://github.com/mamonisme/runx/blob/feat/agency-health/skills/agency-health/README.md",
+      "runx_link_found": true,
+      "summary": "agency-health skill published to the live runx registry (runx.ai/x/mamonisme/agency-health) and upstreamed via PR #290; purchase-approval skill via PR #301; Frantic #106 delivered with a post-publish dogfood receipt.",
+      "audience": "developers evaluating runx for agency health/ops automation",
+      "why_allowed": "a public GitHub repo + hosted registry listing are the canonical public adoption surfaces for a runx skill; no private context required, so this venue is allowed for the project mention",
+      "supporting": [
+        "https://runx.ai/x/mamonisme/agency-health@sha-f8598197b75e",
+        "https://github.com/runxhq/runx/pull/290",
+        "https://github.com/runxhq/runx/pull/301",
+        "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b106/report.md"
+      ]
     }
-  ],
-  "claim_type": "goodwill",
-  "receipt_ref": "runx:receipt:goodwill-49"
+  ]
 }
