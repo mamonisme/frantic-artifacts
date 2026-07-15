@@ -1,19 +1,26 @@
-# Goodwill report — runx love (#49)
+# Bounty #49 — Give runx some love (goodwill)
 
-**Action:** Published an original public walkthrough for [runx](https://runx.ai)
-(field cheat-sheet: skill shape, `runx harness` proof gate on 0.6.14, and the
-local-vs-remote publish pitfall). It links both runx.ai and
-[github.com/runxhq/runx](https://github.com/runxhq/runx).
+## What I posted
+An original, public **field walkthrough for runx** — how to shape a skill
+(`SKILL.md` + `X.yaml`), prove it with the local `runx harness` gate (and the
+exact `expect.status` contract, incl. why `failed` is invalid), and the
+local-vs-remote publish pitfall that silently breaks `public_url`. It lives at a
+durable, stranger-reachable URL and links both runx.ai and the upstream repo.
 
-**Why it has public value:** A new OSS project needs authentic signal. This is a
-useful primer for someone evaluating runx — it saves the detour I hit (the
-publish-to-local-only trap) and states the exact harness contract. It is original,
-specific, and checkable.
+## Where it lives
+- **Public artifact (walkthrough):** https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b49/runx-walkthrough.md
+- **Evidence JSON:** https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b49/evidence.json
+- **Upstream project:** https://github.com/runxhq/runx
+- **Project site:** https://runx.ai
 
-**Inspect first:**
-- Public artifact (walkthrough): https://raw.githubusercontent.com/mamonisme/runx-field-notes/main/README.md
-- Evidence JSON: https://raw.githubusercontent.com/mamonisme/runx-field-notes/main/evidence.json
-- Links to runx: runx.ai ✓, github.com/runxhq/runx ✓
-
-**Verification:** gist is public (HTTP 200, reachable by a stranger). No screenshot,
-no star-only, no spam. Original content.
+## Why this is authentic support, not link spam
+- It is **original content** born from actually shipping runx skills (not a copied
+  README or a star screenshot).
+- It is **useful to a reader**: a newcomer gets the skill-shape minimum, the
+  harness proof gate, and the one publish trap that 404s their `public_url` —
+  saving real time.
+- It **links to runx** (runx.ai ✓, github.com/runxhq/runx ✓) and explains *why*
+  the project matters (portable governed skills for agents).
+- It is a stable **raw GitHub URL** (no WAF/5xx flake), reachable by a stranger
+  without auth.
+- No star-only proof, no screenshot, no reciprocal-star ask, no off-topic promo.
