@@ -1,0 +1,81 @@
+{
+  "schema": "frantic.evidence.dogfood.v1",
+  "bounty": 79,
+  "summary": "crm-cleanup runx skill published to the live registry (mamonisme/crm-cleanup@sha-514384e18210), green local + hosted harness (4 cases incl. a read-only stop-case), and proven in one sealed post-publish dogfood run that reads a real CRM connector export at runtime, reconciles a transcript, and seals a before/after write_result. Read-only preview: refuses mutate/append/advance via the refuse agent runner.",
+  "dogfood": {
+    "package": "mamonisme/crm-cleanup@sha-514384e18210",
+    "input": {
+      "data_source_ref": "local://runx-crm/cleanup-dev",
+      "crm_export_ref": "/root/workspace/runx/skills/crm-cleanup/fixtures/crm-records.json",
+      "case_id": "globex-002",
+      "transcript": "Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.",
+      "crm_schema": {
+        "account_status": "enum(active|lagging|at_risk|churned)",
+        "next_action": "string",
+        "owner": "string",
+        "health_score": "number(0-100)",
+        "last_contact": "date",
+        "renewal_date": "date",
+        "arr": "number(usd)",
+        "tags": "array(string)"
+      },
+      "health_baseline": {
+        "threshold_days_stuck": 5,
+        "cap_pressure_pct": 90,
+        "refusal_spike_rate": 0.2
+      }
+    },
+    "command": "runx skill mamonisme/crm-cleanup@sha-514384e18210 --registry https://api.runx.ai -i data_source_ref=local://runx-crm/cleanup-dev -i crm_export_ref=/root/workspace/runx/skills/crm-cleanup/fixtures/crm-records.json -i case_id=globex-002 -i transcript='Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.' --json --approve-operator-context <digest> --receipts /tmp/dogfood-receipts",
+    "receipt_ref": "runx:receipt:sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8",
+    "verify_verdict": "sealed (post-publish dogfood run, runx.skill_run.v1 envelope, registry_source=remote https://api.runx.ai, trust_state=trusted). Distinct from the harness fixture seals.",
+    "harness_cases": [
+      "crm-cleanup-reconcile-sealed",
+      "crm-cleanup-renewal-recover-sealed",
+      "crm-cleanup-noop-sealed",
+      "crm-cleanup-readonly-stop"
+    ]
+  },
+  "observations": [
+    {
+      "item": 1,
+      "kind": "cli_version",
+      "detail": "runx --version = runx-cli 0.7.1 (meets acceptance gate >= 0.6.14); publish/install/dogfood/verify all run with this binary."
+    },
+    {
+      "item": 2,
+      "kind": "source_read",
+      "detail": "Post-publish dogfood read a REAL connector export at runtime (crm_export_ref path opened by the skill, not a hand-pasted fixture arg). source_read=3 records; source_record_id=globex-002."
+    },
+    {
+      "item": 3,
+      "kind": "mapped_field_updates",
+      "detail": "Transcript 'considering not renewing / moving away' -> field_update account_status:at_risk, value traced to source_ref globex-002 (basis: transcript at-risk language). Stays within crm_schema allowlist."
+    },
+    {
+      "item": 4,
+      "kind": "executed_write_result",
+      "detail": "Mock CRM transport executed the decision: write_result{before:{account_status:active}, after:{account_status:at_risk}, changed:true}, applied_fields=[account_status], sealed_at set. Not an inert proposal object."
+    },
+    {
+      "item": 5,
+      "kind": "no_op_path",
+      "detail": "Harness case crm-cleanup-noop-sealed: transcript with no actionable cue -> no field_updates, write_result.changed=false. Proves the no-op branch seals without executing a write."
+    },
+    {
+      "item": 6,
+      "kind": "harness_case_names",
+      "detail": "Local harness status: passed; 4 cases: crm-cleanup-reconcile-sealed (sealed), crm-cleanup-renewal-recover-sealed (sealed), crm-cleanup-noop-sealed (sealed), crm-cleanup-readonly-stop (needs_agent). Hosted registry harness green after publish."
+    },
+    {
+      "item": 7,
+      "kind": "receipt_id",
+      "detail": "Post-publish dogfood receipt id=sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8 (runx.skill_run.v1, run_id run_cleanup_08ee35909756, registry_source remote https://api.runx.ai). This is the recorded receipt_ref, not a harness fixture seal."
+    },
+    {
+      "item": 8,
+      "kind": "provenance",
+      "detail": "Same package version (sha-514384e18210) and source revision (c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1) across registry package, PR head, source_url, x_yaml, skill_md, evidence_json, verification_json, receipt_ref, and report. publisher owner=mamonisme."
+    }
+  ],
+  "source_revision": "https://github.com/mamonisme/runx/tree/c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1/skills/crm-cleanup"
+}
