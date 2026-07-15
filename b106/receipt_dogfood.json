@@ -1,0 +1,369 @@
+{
+  "closure": {
+    "closed_at": "2026-07-14T13:46:16.742Z",
+    "disposition": "closed",
+    "reason_code": "graph_closed",
+    "summary": "graph agency-health completed"
+  },
+  "execution": {
+    "exit_code": 0,
+    "skill_claim": {
+      "graph": "agency-health",
+      "graph_status": "Succeeded",
+      "step_outputs": {
+        "grade": {
+          "raw": "{\n  \"status\": \"sealed\",\n  \"agent_task\": {\n    \"agency-health\": {\n      \"output\": {\n        \"health_bundle\": {\n          \"schema\": \"runx.agency.health.v1\",\n          \"case_id\": \"case-stalled-002\",\n          \"agency_ref\": \"health-dev\",\n          \"period\": {\n            \"from\": \"2026-07-01T00:00:00Z\",\n            \"to\": \"2026-07-08T00:00:00Z\"\n          },\n          \"decision\": \"ready\",\n          \"health_verdict\": {\n            \"status\": \"degraded\",\n            \"findings\": [\n              {\n                \"metric\": \"stalled_turns\",\n                \"norm\": \"<= 5 turns stalled\",\n                \"observed\": 3,\n                \"assessment\": \"stalled\"\n              }\n            ]\n          },\n          \"intervention_findings\": [\n            {\n              \"target_lane\": \"human\",\n              \"reason\": \"turns stalled beyond 5-turn window: s2, s3, s4\",\n              \"grounding\": {\n                \"case_id\": \"case-stalled-002\",\n                \"turns\": [\n                  \"s2\",\n                  \"s3\",\n                  \"s4\"\n                ]\n              }\n            }\n          ],\n          \"folded\": {\n            \"turns_total\": 4,\n            \"status_histogram\": {\n              \"advanced\": 2,\n              \"awaiting_approval\": 1,\n              \"resolved\": 0,\n              \"failed\": 0,\n              \"needs_input\": 1\n            },\n            \"cumulative_acts\": 3,\n            \"cumulative_spend\": 12,\n            \"stalled_turns\": [\n              \"s2\",\n              \"s3\",\n              \"s4\"\n            ],\n            \"approval_parked\": 1\n          },\n          \"ledger_stubs\": {\n            \"seal_rate\": 1,\n            \"refusal_rate\": 0,\n            \"receipt_stubs\": []\n          }\n        }\n      }\n    }\n  },\n  \"receipt\": {\n    \"schema\": \"runx.receipt.v1\"\n  }\n}\n",
+          "skill_claim": {
+            "agent_task": {
+              "agency-health": {
+                "output": {
+                  "health_bundle": {
+                    "agency_ref": "health-dev",
+                    "case_id": "case-stalled-002",
+                    "decision": "ready",
+                    "folded": {
+                      "approval_parked": 1,
+                      "cumulative_acts": 3,
+                      "cumulative_spend": 12,
+                      "stalled_turns": [
+                        "s2",
+                        "s3",
+                        "s4"
+                      ],
+                      "status_histogram": {
+                        "advanced": 2,
+                        "awaiting_approval": 1,
+                        "failed": 0,
+                        "needs_input": 1,
+                        "resolved": 0
+                      },
+                      "turns_total": 4
+                    },
+                    "health_verdict": {
+                      "findings": [
+                        {
+                          "assessment": "stalled",
+                          "metric": "stalled_turns",
+                          "norm": "<= 5 turns stalled",
+                          "observed": 3
+                        }
+                      ],
+                      "status": "degraded"
+                    },
+                    "intervention_findings": [
+                      {
+                        "grounding": {
+                          "case_id": "case-stalled-002",
+                          "turns": [
+                            "s2",
+                            "s3",
+                            "s4"
+                          ]
+                        },
+                        "reason": "turns stalled beyond 5-turn window: s2, s3, s4",
+                        "target_lane": "human"
+                      }
+                    ],
+                    "ledger_stubs": {
+                      "receipt_stubs": [],
+                      "refusal_rate": 0,
+                      "seal_rate": 1
+                    },
+                    "period": {
+                      "from": "2026-07-01T00:00:00Z",
+                      "to": "2026-07-08T00:00:00Z"
+                    },
+                    "schema": "runx.agency.health.v1"
+                  }
+                }
+              }
+            },
+            "receipt": {
+              "schema": "runx.receipt.v1"
+            },
+            "status": "sealed"
+          },
+          "status": "success",
+          "stderr": "",
+          "stdout": "{\n  \"status\": \"sealed\",\n  \"agent_task\": {\n    \"agency-health\": {\n      \"output\": {\n        \"health_bundle\": {\n          \"schema\": \"runx.agency.health.v1\",\n          \"case_id\": \"case-stalled-002\",\n          \"agency_ref\": \"health-dev\",\n          \"period\": {\n            \"from\": \"2026-07-01T00:00:00Z\",\n            \"to\": \"2026-07-08T00:00:00Z\"\n          },\n          \"decision\": \"ready\",\n          \"health_verdict\": {\n            \"status\": \"degraded\",\n            \"findings\": [\n              {\n                \"metric\": \"stalled_turns\",\n                \"norm\": \"<= 5 turns stalled\",\n                \"observed\": 3,\n                \"assessment\": \"stalled\"\n              }\n            ]\n          },\n          \"intervention_findings\": [\n            {\n              \"target_lane\": \"human\",\n              \"reason\": \"turns stalled beyond 5-turn window: s2, s3, s4\",\n              \"grounding\": {\n                \"case_id\": \"case-stalled-002\",\n                \"turns\": [\n                  \"s2\",\n                  \"s3\",\n                  \"s4\"\n                ]\n              }\n            }\n          ],\n          \"folded\": {\n            \"turns_total\": 4,\n            \"status_histogram\": {\n              \"advanced\": 2,\n              \"awaiting_approval\": 1,\n              \"resolved\": 0,\n              \"failed\": 0,\n              \"needs_input\": 1\n            },\n            \"cumulative_acts\": 3,\n            \"cumulative_spend\": 12,\n            \"stalled_turns\": [\n              \"s2\",\n              \"s3\",\n              \"s4\"\n            ],\n            \"approval_parked\": 1\n          },\n          \"ledger_stubs\": {\n            \"seal_rate\": 1,\n            \"refusal_rate\": 0,\n            \"receipt_stubs\": []\n          }\n        }\n      }\n    }\n  },\n  \"receipt\": {\n    \"schema\": \"runx.receipt.v1\"\n  }\n}\n"
+        }
+      },
+      "steps": [
+        {
+          "receipt_id": "sha256:42afbe8a8bfc1731ce6d95752861e529ecf878bb0ffe5ac65869863d5550f9e0",
+          "skill": "grade",
+          "status": "success",
+          "step_id": "grade"
+        }
+      ]
+    },
+    "stderr": "",
+    "stdout": "{\"graph\":\"agency-health\",\"graph_status\":\"Succeeded\",\"step_outputs\":{\"grade\":{\"raw\":\"{\\n  \\\"status\\\": \\\"sealed\\\",\\n  \\\"agent_task\\\": {\\n    \\\"agency-health\\\": {\\n      \\\"output\\\": {\\n        \\\"health_bundle\\\": {\\n          \\\"schema\\\": \\\"runx.agency.health.v1\\\",\\n          \\\"case_id\\\": \\\"case-stalled-002\\\",\\n          \\\"agency_ref\\\": \\\"health-dev\\\",\\n          \\\"period\\\": {\\n            \\\"from\\\": \\\"2026-07-01T00:00:00Z\\\",\\n            \\\"to\\\": \\\"2026-07-08T00:00:00Z\\\"\\n          },\\n          \\\"decision\\\": \\\"ready\\\",\\n          \\\"health_verdict\\\": {\\n            \\\"status\\\": \\\"degraded\\\",\\n            \\\"findings\\\": [\\n              {\\n                \\\"metric\\\": \\\"stalled_turns\\\",\\n                \\\"norm\\\": \\\"<= 5 turns stalled\\\",\\n                \\\"observed\\\": 3,\\n                \\\"assessment\\\": \\\"stalled\\\"\\n              }\\n            ]\\n          },\\n          \\\"intervention_findings\\\": [\\n            {\\n              \\\"target_lane\\\": \\\"human\\\",\\n              \\\"reason\\\": \\\"turns stalled beyond 5-turn window: s2, s3, s4\\\",\\n              \\\"grounding\\\": {\\n                \\\"case_id\\\": \\\"case-stalled-002\\\",\\n                \\\"turns\\\": [\\n                  \\\"s2\\\",\\n                  \\\"s3\\\",\\n                  \\\"s4\\\"\\n                ]\\n              }\\n            }\\n          ],\\n          \\\"folded\\\": {\\n            \\\"turns_total\\\": 4,\\n            \\\"status_histogram\\\": {\\n              \\\"advanced\\\": 2,\\n              \\\"awaiting_approval\\\": 1,\\n              \\\"resolved\\\": 0,\\n              \\\"failed\\\": 0,\\n              \\\"needs_input\\\": 1\\n            },\\n            \\\"cumulative_acts\\\": 3,\\n            \\\"cumulative_spend\\\": 12,\\n            \\\"stalled_turns\\\": [\\n              \\\"s2\\\",\\n              \\\"s3\\\",\\n              \\\"s4\\\"\\n            ],\\n            \\\"approval_parked\\\": 1\\n          },\\n          \\\"ledger_stubs\\\": {\\n            \\\"seal_rate\\\": 1,\\n            \\\"refusal_rate\\\": 0,\\n            \\\"receipt_stubs\\\": []\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"receipt\\\": {\\n    \\\"schema\\\": \\\"runx.receipt.v1\\\"\\n  }\\n}\\n\",\"skill_claim\":{\"agent_task\":{\"agency-health\":{\"output\":{\"health_bundle\":{\"agency_ref\":\"health-dev\",\"case_id\":\"case-stalled-002\",\"decision\":\"ready\",\"folded\":{\"approval_parked\":1,\"cumulative_acts\":3,\"cumulative_spend\":12,\"stalled_turns\":[\"s2\",\"s3\",\"s4\"],\"status_histogram\":{\"advanced\":2,\"awaiting_approval\":1,\"failed\":0,\"needs_input\":1,\"resolved\":0},\"turns_total\":4},\"health_verdict\":{\"findings\":[{\"assessment\":\"stalled\",\"metric\":\"stalled_turns\",\"norm\":\"<= 5 turns stalled\",\"observed\":3}],\"status\":\"degraded\"},\"intervention_findings\":[{\"grounding\":{\"case_id\":\"case-stalled-002\",\"turns\":[\"s2\",\"s3\",\"s4\"]},\"reason\":\"turns stalled beyond 5-turn window: s2, s3, s4\",\"target_lane\":\"human\"}],\"ledger_stubs\":{\"receipt_stubs\":[],\"refusal_rate\":0,\"seal_rate\":1},\"period\":{\"from\":\"2026-07-01T00:00:00Z\",\"to\":\"2026-07-08T00:00:00Z\"},\"schema\":\"runx.agency.health.v1\"}}}},\"receipt\":{\"schema\":\"runx.receipt.v1\"},\"status\":\"sealed\"},\"status\":\"success\",\"stderr\":\"\",\"stdout\":\"{\\n  \\\"status\\\": \\\"sealed\\\",\\n  \\\"agent_task\\\": {\\n    \\\"agency-health\\\": {\\n      \\\"output\\\": {\\n        \\\"health_bundle\\\": {\\n          \\\"schema\\\": \\\"runx.agency.health.v1\\\",\\n          \\\"case_id\\\": \\\"case-stalled-002\\\",\\n          \\\"agency_ref\\\": \\\"health-dev\\\",\\n          \\\"period\\\": {\\n            \\\"from\\\": \\\"2026-07-01T00:00:00Z\\\",\\n            \\\"to\\\": \\\"2026-07-08T00:00:00Z\\\"\\n          },\\n          \\\"decision\\\": \\\"ready\\\",\\n          \\\"health_verdict\\\": {\\n            \\\"status\\\": \\\"degraded\\\",\\n            \\\"findings\\\": [\\n              {\\n                \\\"metric\\\": \\\"stalled_turns\\\",\\n                \\\"norm\\\": \\\"<= 5 turns stalled\\\",\\n                \\\"observed\\\": 3,\\n                \\\"assessment\\\": \\\"stalled\\\"\\n              }\\n            ]\\n          },\\n          \\\"intervention_findings\\\": [\\n            {\\n              \\\"target_lane\\\": \\\"human\\\",\\n              \\\"reason\\\": \\\"turns stalled beyond 5-turn window: s2, s3, s4\\\",\\n              \\\"grounding\\\": {\\n                \\\"case_id\\\": \\\"case-stalled-002\\\",\\n                \\\"turns\\\": [\\n                  \\\"s2\\\",\\n                  \\\"s3\\\",\\n                  \\\"s4\\\"\\n                ]\\n              }\\n            }\\n          ],\\n          \\\"folded\\\": {\\n            \\\"turns_total\\\": 4,\\n            \\\"status_histogram\\\": {\\n              \\\"advanced\\\": 2,\\n              \\\"awaiting_approval\\\": 1,\\n              \\\"resolved\\\": 0,\\n              \\\"failed\\\": 0,\\n              \\\"needs_input\\\": 1\\n            },\\n            \\\"cumulative_acts\\\": 3,\\n            \\\"cumulative_spend\\\": 12,\\n            \\\"stalled_turns\\\": [\\n              \\\"s2\\\",\\n              \\\"s3\\\",\\n              \\\"s4\\\"\\n            ],\\n            \\\"approval_parked\\\": 1\\n          },\\n          \\\"ledger_stubs\\\": {\\n            \\\"seal_rate\\\": 1,\\n            \\\"refusal_rate\\\": 0,\\n            \\\"receipt_stubs\\\": []\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"receipt\\\": {\\n    \\\"schema\\\": \\\"runx.receipt.v1\\\"\\n  }\\n}\\n\"}},\"steps\":[{\"receipt_id\":\"sha256:42afbe8a8bfc1731ce6d95752861e529ecf878bb0ffe5ac65869863d5550f9e0\",\"skill\":\"grade\",\"status\":\"success\",\"step_id\":\"grade\"}]}",
+    "structured_output": {
+      "graph": "agency-health",
+      "graph_status": "Succeeded",
+      "step_outputs": {
+        "grade": {
+          "raw": "{\n  \"status\": \"sealed\",\n  \"agent_task\": {\n    \"agency-health\": {\n      \"output\": {\n        \"health_bundle\": {\n          \"schema\": \"runx.agency.health.v1\",\n          \"case_id\": \"case-stalled-002\",\n          \"agency_ref\": \"health-dev\",\n          \"period\": {\n            \"from\": \"2026-07-01T00:00:00Z\",\n            \"to\": \"2026-07-08T00:00:00Z\"\n          },\n          \"decision\": \"ready\",\n          \"health_verdict\": {\n            \"status\": \"degraded\",\n            \"findings\": [\n              {\n                \"metric\": \"stalled_turns\",\n                \"norm\": \"<= 5 turns stalled\",\n                \"observed\": 3,\n                \"assessment\": \"stalled\"\n              }\n            ]\n          },\n          \"intervention_findings\": [\n            {\n              \"target_lane\": \"human\",\n              \"reason\": \"turns stalled beyond 5-turn window: s2, s3, s4\",\n              \"grounding\": {\n                \"case_id\": \"case-stalled-002\",\n                \"turns\": [\n                  \"s2\",\n                  \"s3\",\n                  \"s4\"\n                ]\n              }\n            }\n          ],\n          \"folded\": {\n            \"turns_total\": 4,\n            \"status_histogram\": {\n              \"advanced\": 2,\n              \"awaiting_approval\": 1,\n              \"resolved\": 0,\n              \"failed\": 0,\n              \"needs_input\": 1\n            },\n            \"cumulative_acts\": 3,\n            \"cumulative_spend\": 12,\n            \"stalled_turns\": [\n              \"s2\",\n              \"s3\",\n              \"s4\"\n            ],\n            \"approval_parked\": 1\n          },\n          \"ledger_stubs\": {\n            \"seal_rate\": 1,\n            \"refusal_rate\": 0,\n            \"receipt_stubs\": []\n          }\n        }\n      }\n    }\n  },\n  \"receipt\": {\n    \"schema\": \"runx.receipt.v1\"\n  }\n}\n",
+          "skill_claim": {
+            "agent_task": {
+              "agency-health": {
+                "output": {
+                  "health_bundle": {
+                    "agency_ref": "health-dev",
+                    "case_id": "case-stalled-002",
+                    "decision": "ready",
+                    "folded": {
+                      "approval_parked": 1,
+                      "cumulative_acts": 3,
+                      "cumulative_spend": 12,
+                      "stalled_turns": [
+                        "s2",
+                        "s3",
+                        "s4"
+                      ],
+                      "status_histogram": {
+                        "advanced": 2,
+                        "awaiting_approval": 1,
+                        "failed": 0,
+                        "needs_input": 1,
+                        "resolved": 0
+                      },
+                      "turns_total": 4
+                    },
+                    "health_verdict": {
+                      "findings": [
+                        {
+                          "assessment": "stalled",
+                          "metric": "stalled_turns",
+                          "norm": "<= 5 turns stalled",
+                          "observed": 3
+                        }
+                      ],
+                      "status": "degraded"
+                    },
+                    "intervention_findings": [
+                      {
+                        "grounding": {
+                          "case_id": "case-stalled-002",
+                          "turns": [
+                            "s2",
+                            "s3",
+                            "s4"
+                          ]
+                        },
+                        "reason": "turns stalled beyond 5-turn window: s2, s3, s4",
+                        "target_lane": "human"
+                      }
+                    ],
+                    "ledger_stubs": {
+                      "receipt_stubs": [],
+                      "refusal_rate": 0,
+                      "seal_rate": 1
+                    },
+                    "period": {
+                      "from": "2026-07-01T00:00:00Z",
+                      "to": "2026-07-08T00:00:00Z"
+                    },
+                    "schema": "runx.agency.health.v1"
+                  }
+                }
+              }
+            },
+            "receipt": {
+              "schema": "runx.receipt.v1"
+            },
+            "status": "sealed"
+          },
+          "status": "success",
+          "stderr": "",
+          "stdout": "{\n  \"status\": \"sealed\",\n  \"agent_task\": {\n    \"agency-health\": {\n      \"output\": {\n        \"health_bundle\": {\n          \"schema\": \"runx.agency.health.v1\",\n          \"case_id\": \"case-stalled-002\",\n          \"agency_ref\": \"health-dev\",\n          \"period\": {\n            \"from\": \"2026-07-01T00:00:00Z\",\n            \"to\": \"2026-07-08T00:00:00Z\"\n          },\n          \"decision\": \"ready\",\n          \"health_verdict\": {\n            \"status\": \"degraded\",\n            \"findings\": [\n              {\n                \"metric\": \"stalled_turns\",\n                \"norm\": \"<= 5 turns stalled\",\n                \"observed\": 3,\n                \"assessment\": \"stalled\"\n              }\n            ]\n          },\n          \"intervention_findings\": [\n            {\n              \"target_lane\": \"human\",\n              \"reason\": \"turns stalled beyond 5-turn window: s2, s3, s4\",\n              \"grounding\": {\n                \"case_id\": \"case-stalled-002\",\n                \"turns\": [\n                  \"s2\",\n                  \"s3\",\n                  \"s4\"\n                ]\n              }\n            }\n          ],\n          \"folded\": {\n            \"turns_total\": 4,\n            \"status_histogram\": {\n              \"advanced\": 2,\n              \"awaiting_approval\": 1,\n              \"resolved\": 0,\n              \"failed\": 0,\n              \"needs_input\": 1\n            },\n            \"cumulative_acts\": 3,\n            \"cumulative_spend\": 12,\n            \"stalled_turns\": [\n              \"s2\",\n              \"s3\",\n              \"s4\"\n            ],\n            \"approval_parked\": 1\n          },\n          \"ledger_stubs\": {\n            \"seal_rate\": 1,\n            \"refusal_rate\": 0,\n            \"receipt_stubs\": []\n          }\n        }\n      }\n    }\n  },\n  \"receipt\": {\n    \"schema\": \"runx.receipt.v1\"\n  }\n}\n"
+        }
+      },
+      "steps": [
+        {
+          "receipt_id": "sha256:42afbe8a8bfc1731ce6d95752861e529ecf878bb0ffe5ac65869863d5550f9e0",
+          "skill": "grade",
+          "status": "success",
+          "step_id": "grade"
+        }
+      ]
+    }
+  },
+  "payload": {
+    "graph": "agency-health",
+    "graph_status": "Succeeded",
+    "step_outputs": {
+      "grade": {
+        "raw": "{\n  \"status\": \"sealed\",\n  \"agent_task\": {\n    \"agency-health\": {\n      \"output\": {\n        \"health_bundle\": {\n          \"schema\": \"runx.agency.health.v1\",\n          \"case_id\": \"case-stalled-002\",\n          \"agency_ref\": \"health-dev\",\n          \"period\": {\n            \"from\": \"2026-07-01T00:00:00Z\",\n            \"to\": \"2026-07-08T00:00:00Z\"\n          },\n          \"decision\": \"ready\",\n          \"health_verdict\": {\n            \"status\": \"degraded\",\n            \"findings\": [\n              {\n                \"metric\": \"stalled_turns\",\n                \"norm\": \"<= 5 turns stalled\",\n                \"observed\": 3,\n                \"assessment\": \"stalled\"\n              }\n            ]\n          },\n          \"intervention_findings\": [\n            {\n              \"target_lane\": \"human\",\n              \"reason\": \"turns stalled beyond 5-turn window: s2, s3, s4\",\n              \"grounding\": {\n                \"case_id\": \"case-stalled-002\",\n                \"turns\": [\n                  \"s2\",\n                  \"s3\",\n                  \"s4\"\n                ]\n              }\n            }\n          ],\n          \"folded\": {\n            \"turns_total\": 4,\n            \"status_histogram\": {\n              \"advanced\": 2,\n              \"awaiting_approval\": 1,\n              \"resolved\": 0,\n              \"failed\": 0,\n              \"needs_input\": 1\n            },\n            \"cumulative_acts\": 3,\n            \"cumulative_spend\": 12,\n            \"stalled_turns\": [\n              \"s2\",\n              \"s3\",\n              \"s4\"\n            ],\n            \"approval_parked\": 1\n          },\n          \"ledger_stubs\": {\n            \"seal_rate\": 1,\n            \"refusal_rate\": 0,\n            \"receipt_stubs\": []\n          }\n        }\n      }\n    }\n  },\n  \"receipt\": {\n    \"schema\": \"runx.receipt.v1\"\n  }\n}\n",
+        "skill_claim": {
+          "agent_task": {
+            "agency-health": {
+              "output": {
+                "health_bundle": {
+                  "agency_ref": "health-dev",
+                  "case_id": "case-stalled-002",
+                  "decision": "ready",
+                  "folded": {
+                    "approval_parked": 1,
+                    "cumulative_acts": 3,
+                    "cumulative_spend": 12,
+                    "stalled_turns": [
+                      "s2",
+                      "s3",
+                      "s4"
+                    ],
+                    "status_histogram": {
+                      "advanced": 2,
+                      "awaiting_approval": 1,
+                      "failed": 0,
+                      "needs_input": 1,
+                      "resolved": 0
+                    },
+                    "turns_total": 4
+                  },
+                  "health_verdict": {
+                    "findings": [
+                      {
+                        "assessment": "stalled",
+                        "metric": "stalled_turns",
+                        "norm": "<= 5 turns stalled",
+                        "observed": 3
+                      }
+                    ],
+                    "status": "degraded"
+                  },
+                  "intervention_findings": [
+                    {
+                      "grounding": {
+                        "case_id": "case-stalled-002",
+                        "turns": [
+                          "s2",
+                          "s3",
+                          "s4"
+                        ]
+                      },
+                      "reason": "turns stalled beyond 5-turn window: s2, s3, s4",
+                      "target_lane": "human"
+                    }
+                  ],
+                  "ledger_stubs": {
+                    "receipt_stubs": [],
+                    "refusal_rate": 0,
+                    "seal_rate": 1
+                  },
+                  "period": {
+                    "from": "2026-07-01T00:00:00Z",
+                    "to": "2026-07-08T00:00:00Z"
+                  },
+                  "schema": "runx.agency.health.v1"
+                }
+              }
+            }
+          },
+          "receipt": {
+            "schema": "runx.receipt.v1"
+          },
+          "status": "sealed"
+        },
+        "status": "success",
+        "stderr": "",
+        "stdout": "{\n  \"status\": \"sealed\",\n  \"agent_task\": {\n    \"agency-health\": {\n      \"output\": {\n        \"health_bundle\": {\n          \"schema\": \"runx.agency.health.v1\",\n          \"case_id\": \"case-stalled-002\",\n          \"agency_ref\": \"health-dev\",\n          \"period\": {\n            \"from\": \"2026-07-01T00:00:00Z\",\n            \"to\": \"2026-07-08T00:00:00Z\"\n          },\n          \"decision\": \"ready\",\n          \"health_verdict\": {\n            \"status\": \"degraded\",\n            \"findings\": [\n              {\n                \"metric\": \"stalled_turns\",\n                \"norm\": \"<= 5 turns stalled\",\n                \"observed\": 3,\n                \"assessment\": \"stalled\"\n              }\n            ]\n          },\n          \"intervention_findings\": [\n            {\n              \"target_lane\": \"human\",\n              \"reason\": \"turns stalled beyond 5-turn window: s2, s3, s4\",\n              \"grounding\": {\n                \"case_id\": \"case-stalled-002\",\n                \"turns\": [\n                  \"s2\",\n                  \"s3\",\n                  \"s4\"\n                ]\n              }\n            }\n          ],\n          \"folded\": {\n            \"turns_total\": 4,\n            \"status_histogram\": {\n              \"advanced\": 2,\n              \"awaiting_approval\": 1,\n              \"resolved\": 0,\n              \"failed\": 0,\n              \"needs_input\": 1\n            },\n            \"cumulative_acts\": 3,\n            \"cumulative_spend\": 12,\n            \"stalled_turns\": [\n              \"s2\",\n              \"s3\",\n              \"s4\"\n            ],\n            \"approval_parked\": 1\n          },\n          \"ledger_stubs\": {\n            \"seal_rate\": 1,\n            \"refusal_rate\": 0,\n            \"receipt_stubs\": []\n          }\n        }\n      }\n    }\n  },\n  \"receipt\": {\n    \"schema\": \"runx.receipt.v1\"\n  }\n}\n"
+      }
+    },
+    "steps": [
+      {
+        "receipt_id": "sha256:42afbe8a8bfc1731ce6d95752861e529ecf878bb0ffe5ac65869863d5550f9e0",
+        "skill": "grade",
+        "status": "success",
+        "step_id": "grade"
+      }
+    ]
+  },
+  "receipt": {
+    "acts": [],
+    "authority": {
+      "actor_ref": {
+        "type": "principal",
+        "uri": "runx:principal:local_runtime"
+      },
+      "attenuation": {
+        "parent_authority_ref": null,
+        "subset_proof": null
+      },
+      "authority_proof_refs": [],
+      "enforcement": {
+        "profile_hash": "sha256:635fdb0a7eef93911e3c6bd0b25b5e635edba32e0259133042b3a5f1fb19394e",
+        "redaction_refs": [],
+        "setup_refs": [],
+        "teardown_refs": []
+      },
+      "grant_refs": [],
+      "scope_refs": [],
+      "terms": []
+    },
+    "canonicalization": "runx.receipt.c14n.v1",
+    "created_at": "2026-07-14T13:46:16.742Z",
+    "decisions": [],
+    "digest": "sha256:e2834d67fc90556b2a43d007ba70a33784292e5873db7f08023f65a92aef2667",
+    "id": "sha256:fea4f7ddadf1bdb5ea6548812685f06e34a77b6ab624e7ddf5c91333c64662c0",
+    "idempotency": {
+      "content_hash": "sha256:agency-health-graph-content",
+      "intent_key": "sha256:agency-health-graph-intent",
+      "trigger_fingerprint": "sha256:agency-health-graph-trigger"
+    },
+    "issuer": {
+      "kid": "hosted-prod-key",
+      "public_key_sha256": "sha256:563748393da68f87f255e61c3b3796c6bc27a54a879316cf102716f65fb7bec9",
+      "type": "hosted"
+    },
+    "lineage": {
+      "children": [
+        {
+          "locator": "sha256:c86a3c16680a6758d4ac6512c69fcf050c7c83cc11a48729884de2927a343aa5",
+          "type": "receipt",
+          "uri": "runx:receipt:sha256:42afbe8a8bfc1731ce6d95752861e529ecf878bb0ffe5ac65869863d5550f9e0"
+        }
+      ],
+      "sync": []
+    },
+    "schema": "runx.receipt.v1",
+    "seal": {
+      "closed_at": "2026-07-14T13:46:16.742Z",
+      "criteria": [],
+      "disposition": "closed",
+      "last_observed_at": "2026-07-14T13:46:16.742Z",
+      "reason_code": "graph_closed",
+      "summary": "graph agency-health completed"
+    },
+    "signals": [],
+    "signature": {
+      "alg": "Ed25519",
+      "value": "base64:3Y_IawkffLkEDlc_T184KsVcE9AqYDa3sGj15oUoAs_glbwVKIal0v0KFdihlI8MS_hjo_W1kiqgYfoUeMbnAg"
+    },
+    "subject": {
+      "commitments": [],
+      "kind": "graph",
+      "ref": {
+        "type": "harness",
+        "uri": "hrn_agency-health_graph"
+      }
+    }
+  },
+  "receipt_id": "sha256:fea4f7ddadf1bdb5ea6548812685f06e34a77b6ab624e7ddf5c91333c64662c0",
+  "registry_provenance": {
+    "digest": "sha256:a7ee60c276f4f0b01b38ae07d5421ba765018ff4b7740429b1ee35e4fef1809f",
+    "profile_digest": "sha256:f63567691e3b749b542c46ea1f333da2a101046f4ca2b9bea73305cc1585d0d8",
+    "registry_key_id": "runx-registry-ed25519-v1",
+    "registry_source": "remote https://api.runx.ai",
+    "registry_source_fingerprint": "ba1ac16b631195fd",
+    "skill_id": "mamonisme/agency-health",
+    "trust_state": "trusted",
+    "trust_tier": "community",
+    "version": "sha-f8598197b75e"
+  },
+  "run_id": "run_health_c372c3ad637f",
+  "schema": "runx.skill_run.v1",
+  "skill_name": "agency-health",
+  "status": "sealed"
+}
