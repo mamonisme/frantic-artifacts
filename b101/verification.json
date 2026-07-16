@@ -1,0 +1,46 @@
+{
+  "summary": "overlay-open-skill-2 verified: green hosted harness (3 cases, 0 assertion errors) and a sealed post-publish dogfood receipt from the live runx.ai registry.",
+  "runx_version": "runx-cli 0.7.1",
+  "package": "mamonisme/overlay-open-skill-2@sha-7707b0a1f7e2",
+  "public_url": "https://runx.ai/x/mamonisme/overlay-open-skill-2@sha-7707b0a1f7e2",
+  "source_url": "https://github.com/mamonisme/runx/tree/f055afd1868aeaa38c899deffbfb46709f8e1f0a/skills/overlay-open-skill-2",
+  "pr_url": "https://github.com/runxhq/runx/pull/342",
+  "pr_head_commit": "f055afd1868aeaa38c899deffbfb46709f8e1f0a",
+  "harness": {
+    "status": "passed",
+    "case_count": 3,
+    "graph_case_count": 2,
+    "assertion_error_count": 0,
+    "case_names": [
+      "overlay-open-skill-2-sealed",
+      "overlay-open-skill-2-digest-mismatch-stop",
+      "overlay-open-skill-2-readonly-stop"
+    ],
+    "harness_receipt_ids": [
+      "sha256:0dd54d6ab8126e6f1ca9b0144560484b2153d1d398dbb29ea0417e0b990c530d",
+      "sha256:303a42f10974fb64c8bb49eb6336dc95bb1c5f3da84fd7f7d0dca2a2e7a9848d"
+    ]
+  },
+  "dogfood_receipt": {
+    "schema": "runx.skill_run.v1",
+    "run_id": "run_govern_03e87dba6509",
+    "receipt_id": "sha256:1bbae4b169a9ae5897acbda28e7e4effe3d807284d55a084f569322df051adba",
+    "registry_source": "remote https://api.runx.ai",
+    "status": "sealed"
+  },
+  "upstream": {
+    "ref": "anthropics/skills/skill-creator",
+    "repo": "https://github.com/anthropics/skills",
+    "pinned_commit": "9d2f1ae187231d8199c64b5b762e1bdf2244733d",
+    "pinned_digest": "sha256:dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+    "license": "Apache-2.0"
+  },
+  "observations": [
+    "Harness passed: 3 cases (2 graph sealed + 1 agent needs_agent stop-case), 0 assertion errors.",
+    "Remote publish succeeded; public_url returns HTTP 200.",
+    "Post-publish dogfood sealed with receipt runx:receipt:sha256:1bbae4b169a9ae5897acbda28e7e4effe3d807284d55a084f569322df051adba.",
+    "Runtime digest verification: upstream fetch + sha256 matched pin in sealed case; refused (digest.stale) in mismatch case.",
+    "Read-only contract enforced: mutate/append/advance refused.",
+    "Operator stars github.com/runxhq/runx (verifier-checked)."
+  ]
+}

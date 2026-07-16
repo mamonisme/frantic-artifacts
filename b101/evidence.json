@@ -1,0 +1,53 @@
+{
+  "summary": "Delivered overlay-open-skill-2: a published runx overlay governing the Anthropic skill-creator SKILL.md under a pinned sha256 digest with scope bounds and an explicit allowed_tools set, refusing on digest mismatch; green hosted harness (3 cases, 0 assertion errors) and a sealed post-publish dogfood receipt.",
+  "dogfood": {
+    "package": "mamonisme/overlay-open-skill-2@sha-7707b0a1f7e2",
+    "input": {
+      "upstream_url": "https://raw.githubusercontent.com/anthropics/skills/9d2f1ae187231d8199c64b5b762e1bdf2244733d/skills/skill-creator/SKILL.md",
+      "pinned_digest": "sha256:dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+      "wraps_ref": "anthropics/skills/skill-creator",
+      "license": "Apache-2.0",
+      "scopes": ["repo.read", "web.read"],
+      "allowed_tools": ["fs.read", "web.read"],
+      "health_baseline": { "threshold_days_stuck": 5, "cap_pressure_pct": 90, "refusal_spike_rate": 0.2 }
+    },
+    "command": "runx skill \"mamonisme/overlay-open-skill-2@sha-7707b0a1f7e2\" --registry https://api.runx.ai -i upstream_url=https://raw.githubusercontent.com/anthropics/skills/9d2f1ae187231d8199c64b5b762e1bdf2244733d/skills/skill-creator/SKILL.md -i pinned_digest=sha256:dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf -i wraps_ref=anthropics/skills/skill-creator -i license=Apache-2.0 -i scopes='[\"repo.read\",\"web.read\"]' -i allowed_tools='[\"fs.read\",\"web.read\"]' -i health_baseline='{\"threshold_days_stuck\":5,\"cap_pressure_pct\":90,\"refusal_spike_rate\":0.2}' --json --approve-operator-context sha256:a0bf7b5316328c3bae466a9008f63dcc53e1776c88541f0fd989e7661a724eb5 --receipts /tmp/dogfood_101",
+    "receipt_ref": "runx:receipt:sha256:1bbae4b169a9ae5897acbda28e7e4effe3d807284d55a084f569322df051adba",
+    "verify_verdict": "passed: runx.skill_run.v1 envelope with run_id run_govern_03e87dba6509 and status sealed; registry_provenance.registry_source = remote https://api.runx.ai; the runtime-fetched upstream digest matched the pinned sha256, so the overlay emitted decision=ready with scopes [repo.read, web.read] and allowed_tools [fs.read, web.read].",
+    "harness_cases": [
+      "overlay-open-skill-2-sealed",
+      "overlay-open-skill-2-digest-mismatch-stop",
+      "overlay-open-skill-2-readonly-stop"
+    ]
+  },
+  "observations": [
+    {
+      "item": "runx_version",
+      "detail": "runx-cli 0.7.1 (>= 0.6.14 required by bounty). Publish/install/dogfood/verify all run with this binary."
+    },
+    {
+      "item": "publish",
+      "detail": "runx registry publish ./skills/overlay-open-skill-2/SKILL.md --registry https://api.runx.ai returned 'registry publish success'. public_url https://runx.ai/x/mamonisme/overlay-open-skill-2@sha-7707b0a1f7e2 returns HTTP 200."
+    },
+    {
+      "item": "harness",
+      "detail": "runx harness skills/overlay-open-skill-2 -> status: passed, case_count: 3 (overlay-open-skill-2-sealed, overlay-open-skill-2-digest-mismatch-stop, overlay-open-skill-2-readonly-stop), assertion_error_count: 0, graph_case_count: 2."
+    },
+    {
+      "item": "dogfood_receipt",
+      "detail": "Post-publish dogfood run produced schema=runx.skill_run.v1 envelope with run_id=run_govern_03e87dba6509, receipt_id=sha256:1bbae4b169a9ae5897acbda28e7e4effe3d807284d55a084f569322df051adba, registry_provenance.registry_source=remote https://api.runx.ai, status=sealed."
+    },
+    {
+      "item": "digest_pin",
+      "detail": "Upstream anthropics/skills @ commit 9d2f1ae187231d8199c64b5b762e1bdf2244733d, skills/skill-creator/SKILL.md, computed sha256=dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf. Overlay pin matches; runtime fetch+recompute confirms match in the sealed case and refuses (runx.overlay.digest.stale) in the deliberately-wrong-pin case."
+    },
+    {
+      "item": "read_only_guard",
+      "detail": "Runner refuses mutate/append/advance (read-only contract). The readonly-stop harness case uses the 'refuse' agent runner with mutate:true and expects status=needs_agent, confirming the stop-case gate passes."
+    },
+    {
+      "item": "github_star",
+      "detail": "Operator account currently stars github.com/runxhq/runx (verifier github.repo_starred_by checks this directly)."
+    }
+  ]
+}
