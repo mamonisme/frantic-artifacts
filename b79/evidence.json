@@ -1,19 +1,59 @@
 {
   "summary": "crm-cleanup revised: runner now reads live CRM export from a real external URL at runtime (not bundled fixtures), seals a before/after write_result through append_event (real transport), and captures verify verdict + graph steps. Post-publish dogfood run on remote registry SEALED with receipt sha256:35a5d9ffefb6f22922cf70650cf941a9b646c78398445ce9b146fae6bffa7562.",
   "observations": [
-    {"item": 1, "check": "real_source_read", "result": "runner fetched https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json via https.get at runtime; source_read=3 records"},
-    {"item": 2, "check": "transport_seal", "result": "write_result sealed via fs.appendFileSync(events.log) — append_event real transport, not console.log"},
-    {"item": 3, "check": "verify_verdict", "result": "evidence captures verdict=changes_proposed + steps=[read_real_source,reconcile_transcript,decide_field_updates,seal_write_result] + write_result"},
-    {"item": 4, "check": "health_baseline_input", "result": "X.yaml declares health_baseline typed input {threshold_days_stuck,cap_pressure_pct,refusal_spike_rate}; exercised in harness cases"},
-    {"item": 5, "check": "registry_publish", "result": "published to api.runx.ai, version sha-c61dbfea141b, public_url HTTP 200"},
-    {"item": 6, "check": "dogfood_receipt", "result": "post-publish dogfood run_id run_cleanup_e7ca9624fd5e, status sealed, receipt sha256:35a5d9ffefb6f22922cf70650cf941a9b646c78398445ce9b146fae6bffa7562"}
+    {
+      "item": 1,
+      "check": "real_source_read",
+      "result": "runner fetched https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json via https.get at runtime; source_read=3 records"
+    },
+    {
+      "item": 2,
+      "check": "transport_seal",
+      "result": "write_result sealed via fs.appendFileSync(events.log) \u2014 append_event real transport, not console.log"
+    },
+    {
+      "item": 3,
+      "check": "verify_verdict",
+      "result": "evidence captures verdict=changes_proposed + steps=[read_real_source,reconcile_transcript,decide_field_updates,seal_write_result] + write_result"
+    },
+    {
+      "item": 4,
+      "check": "health_baseline_input",
+      "result": "X.yaml declares health_baseline typed input {threshold_days_stuck,cap_pressure_pct,refusal_spike_rate}; exercised in harness cases"
+    },
+    {
+      "item": 5,
+      "check": "registry_publish",
+      "result": "published to api.runx.ai, version sha-c61dbfea141b, public_url HTTP 200"
+    },
+    {
+      "item": 6,
+      "check": "dogfood_receipt",
+      "result": "post-publish dogfood run_id run_cleanup_e7ca9624fd5e, status sealed, receipt sha256:35a5d9ffefb6f22922cf70650cf941a9b646c78398445ce9b146fae6bffa7562"
+    },
+    {
+      "item": 7,
+      "check": "runx_cli_version",
+      "result": "runx --version => runx-cli 0.7.1 (registry publish + dogfood executed with this CLI)"
+    }
   ],
   "dogfood": {
     "package": "mamonisme/crm-cleanup@sha-c61dbfea141b",
-    "input": {"data_source_ref": "local://runx-crm/cleanup-dev", "crm_export_ref": "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json", "case_id": "globex-002", "transcript": "Customer has gone quiet and said they are considering not renewing."},
+    "input": {
+      "data_source_ref": "local://runx-crm/cleanup-dev",
+      "crm_export_ref": "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json",
+      "case_id": "globex-002",
+      "transcript": "Customer has gone quiet and said they are considering not renewing."
+    },
     "command": "runx skill mamonisme/crm-cleanup@sha-c61dbfea141b --registry https://api.runx.ai -i data_source_ref=... -i crm_export_ref=https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json --approve-operator-context sha256:83812c42... --receipts ./receipts --json",
     "receipt_ref": "runx:receipt:sha256:35a5d9ffefb6f22922cf70650cf941a9b646c78398445ce9b146fae6bffa7562",
     "verify_verdict": "sealed (changes_proposed, source_read=3, append_event sealed)",
-    "harness_cases": ["crm-cleanup-healthy", "crm-cleanup-at-risk", "crm-cleanup-readonly-refusal", "crm-cleanup-noop"]
-  }
+    "harness_cases": [
+      "crm-cleanup-healthy",
+      "crm-cleanup-at-risk",
+      "crm-cleanup-readonly-refusal",
+      "crm-cleanup-noop"
+    ]
+  },
+  "runx_version": "runx-cli 0.7.1"
 }
