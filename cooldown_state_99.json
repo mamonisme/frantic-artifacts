@@ -1,0 +1,28 @@
+{
+  "prepared_at_utc": "2026-07-14T11:31:24Z",
+  "cooldown_active": true,
+  "cooldown_clears_at_utc": "2026-07-15T07:06:53Z",
+  "cooldown_clears_at_wib": "2026-07-15T14:06:53+07:00",
+  "retry_after_seconds": 70529,
+  "blocked_bounty_attempted": 99,
+  "reason": "global cooldown_active (expired-undelivered prior claim) — blocks ALL claims until clear",
+  "next_action": "When cron runs after cooldown_clears_at, POST /v1/claims {bounty:99} (must return ok), then POST /v1/deliveries with the prepared artifact_refs below.",
+  "prepared_claim": {
+    "bounty": 99,
+    "tier": "paid_le_10",
+    "auto_allowed": true
+  },
+  "prepared_artifact_refs": [
+    "public_url=https://mamonisme.github.io/frantic-writeup/my-frantic-run.html",
+    "evidence_json=https://raw.githubusercontent.com/mamonisme/frantic-writeup/6f03f610ff0d5ac9bc4dc3366ff9468315cb8b3e/evidence-99.json",
+    "report=https://raw.githubusercontent.com/mamonisme/frantic-writeup/6f03f610ff0d5ac9bc4dc3366ff9468315cb8b3e/report-99.md"
+  ],
+  "preflight_result": {"ok": true, "errors": null, "warnings": null, "mode": "bounty-only (no claim_id, during cooldown)"},
+  "post_live_http": 200,
+  "evidence_observations_count": 4,
+  "escalate_to_user": {
+    "runx_skill_bounties": [89, 100, 106],
+    "reason": "require pr_url (upstream PR to runxhq/runx) — confirm-first public-action gate (AGENTS.md / frantic-runx-bounty authorization gate). Do NOT auto-claim in no-user cron.",
+    "note": "#106 was already attempted and rejected 5x; its real fix is a post-publish dogfood receipt + 6-field evidence_json.dogfood — needs a full build cycle with user go-ahead for the PR."
+  }
+}

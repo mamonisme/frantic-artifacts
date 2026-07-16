@@ -1,0 +1,399 @@
+{
+  "closure": {
+    "closed_at": "2026-07-15T10:38:28.030Z",
+    "disposition": "closed",
+    "reason_code": "graph_closed",
+    "summary": "graph crm-cleanup completed"
+  },
+  "execution": {
+    "exit_code": 0,
+    "skill_claim": {
+      "graph": "crm-cleanup",
+      "graph_status": "Succeeded",
+      "step_outputs": {
+        "cleanup": {
+          "crm_cleanup": {
+            "data": {
+              "case_id": "globex-002",
+              "executed": true,
+              "field_updates": [
+                {
+                  "basis": "transcript at-risk language",
+                  "field": "account_status",
+                  "source_ref": "globex-002",
+                  "value": "at_risk"
+                }
+              ],
+              "source_read": 3,
+              "source_record_id": "globex-002",
+              "write_result": {
+                "after": {
+                  "account_status": "at_risk"
+                },
+                "applied_fields": [
+                  "account_status"
+                ],
+                "before": {
+                  "account_status": "active",
+                  "arr": 21000,
+                  "health_score": 55,
+                  "last_contact": "2026-05-11",
+                  "next_action": null,
+                  "owner": "sam@vendor.io",
+                  "renewal_date": "2026-08-15",
+                  "tags": [
+                    "smb"
+                  ]
+                },
+                "case_id": "globex-002",
+                "changed": true,
+                "sealed_at": "2026-07-15T10:38:28.063Z"
+              }
+            }
+          },
+          "raw": "{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"source_read\":3,\"source_record_id\":\"globex-002\",\"field_updates\":[{\"field\":\"account_status\",\"value\":\"at_risk\",\"source_ref\":\"globex-002\",\"basis\":\"transcript at-risk language\"}],\"write_result\":{\"before\":{\"account_status\":\"active\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"health_score\":55,\"last_contact\":\"2026-05-11\",\"renewal_date\":\"2026-08-15\",\"arr\":21000,\"tags\":[\"smb\"]},\"after\":{\"account_status\":\"at_risk\"},\"changed\":true,\"case_id\":\"globex-002\",\"applied_fields\":[\"account_status\"],\"sealed_at\":\"2026-07-15T10:38:28.063Z\"},\"executed\":true},\"source_ref\":\"local://runx-crm/cleanup-dev\",\"read_only\":true}\n",
+          "skill_claim": {
+            "crm_cleanup": {
+              "case_id": "globex-002",
+              "executed": true,
+              "field_updates": [
+                {
+                  "basis": "transcript at-risk language",
+                  "field": "account_status",
+                  "source_ref": "globex-002",
+                  "value": "at_risk"
+                }
+              ],
+              "source_read": 3,
+              "source_record_id": "globex-002",
+              "write_result": {
+                "after": {
+                  "account_status": "at_risk"
+                },
+                "applied_fields": [
+                  "account_status"
+                ],
+                "before": {
+                  "account_status": "active",
+                  "arr": 21000,
+                  "health_score": 55,
+                  "last_contact": "2026-05-11",
+                  "next_action": null,
+                  "owner": "sam@vendor.io",
+                  "renewal_date": "2026-08-15",
+                  "tags": [
+                    "smb"
+                  ]
+                },
+                "case_id": "globex-002",
+                "changed": true,
+                "sealed_at": "2026-07-15T10:38:28.063Z"
+              }
+            },
+            "read_only": true,
+            "source_ref": "local://runx-crm/cleanup-dev"
+          },
+          "status": "success",
+          "stderr": "",
+          "stdout": "{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"source_read\":3,\"source_record_id\":\"globex-002\",\"field_updates\":[{\"field\":\"account_status\",\"value\":\"at_risk\",\"source_ref\":\"globex-002\",\"basis\":\"transcript at-risk language\"}],\"write_result\":{\"before\":{\"account_status\":\"active\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"health_score\":55,\"last_contact\":\"2026-05-11\",\"renewal_date\":\"2026-08-15\",\"arr\":21000,\"tags\":[\"smb\"]},\"after\":{\"account_status\":\"at_risk\"},\"changed\":true,\"case_id\":\"globex-002\",\"applied_fields\":[\"account_status\"],\"sealed_at\":\"2026-07-15T10:38:28.063Z\"},\"executed\":true},\"source_ref\":\"local://runx-crm/cleanup-dev\",\"read_only\":true}\n"
+        }
+      },
+      "steps": [
+        {
+          "receipt_id": "sha256:4f45c18d7df131baa9a7d7ef340ac0167b74491af2613a0ff1b936f181ec7a33",
+          "skill": "cleanup",
+          "status": "success",
+          "step_id": "cleanup"
+        }
+      ]
+    },
+    "stderr": "",
+    "stdout": "{\"graph\":\"crm-cleanup\",\"graph_status\":\"Succeeded\",\"step_outputs\":{\"cleanup\":{\"crm_cleanup\":{\"data\":{\"case_id\":\"globex-002\",\"executed\":true,\"field_updates\":[{\"basis\":\"transcript at-risk language\",\"field\":\"account_status\",\"source_ref\":\"globex-002\",\"value\":\"at_risk\"}],\"source_read\":3,\"source_record_id\":\"globex-002\",\"write_result\":{\"after\":{\"account_status\":\"at_risk\"},\"applied_fields\":[\"account_status\"],\"before\":{\"account_status\":\"active\",\"arr\":21000,\"health_score\":55,\"last_contact\":\"2026-05-11\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"renewal_date\":\"2026-08-15\",\"tags\":[\"smb\"]},\"case_id\":\"globex-002\",\"changed\":true,\"sealed_at\":\"2026-07-15T10:38:28.063Z\"}}},\"raw\":\"{\\\"crm_cleanup\\\":{\\\"case_id\\\":\\\"globex-002\\\",\\\"source_read\\\":3,\\\"source_record_id\\\":\\\"globex-002\\\",\\\"field_updates\\\":[{\\\"field\\\":\\\"account_status\\\",\\\"value\\\":\\\"at_risk\\\",\\\"source_ref\\\":\\\"globex-002\\\",\\\"basis\\\":\\\"transcript at-risk language\\\"}],\\\"write_result\\\":{\\\"before\\\":{\\\"account_status\\\":\\\"active\\\",\\\"next_action\\\":null,\\\"owner\\\":\\\"sam@vendor.io\\\",\\\"health_score\\\":55,\\\"last_contact\\\":\\\"2026-05-11\\\",\\\"renewal_date\\\":\\\"2026-08-15\\\",\\\"arr\\\":21000,\\\"tags\\\":[\\\"smb\\\"]},\\\"after\\\":{\\\"account_status\\\":\\\"at_risk\\\"},\\\"changed\\\":true,\\\"case_id\\\":\\\"globex-002\\\",\\\"applied_fields\\\":[\\\"account_status\\\"],\\\"sealed_at\\\":\\\"2026-07-15T10:38:28.063Z\\\"},\\\"executed\\\":true},\\\"source_ref\\\":\\\"local://runx-crm/cleanup-dev\\\",\\\"read_only\\\":true}\\n\",\"skill_claim\":{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"executed\":true,\"field_updates\":[{\"basis\":\"transcript at-risk language\",\"field\":\"account_status\",\"source_ref\":\"globex-002\",\"value\":\"at_risk\"}],\"source_read\":3,\"source_record_id\":\"globex-002\",\"write_result\":{\"after\":{\"account_status\":\"at_risk\"},\"applied_fields\":[\"account_status\"],\"before\":{\"account_status\":\"active\",\"arr\":21000,\"health_score\":55,\"last_contact\":\"2026-05-11\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"renewal_date\":\"2026-08-15\",\"tags\":[\"smb\"]},\"case_id\":\"globex-002\",\"changed\":true,\"sealed_at\":\"2026-07-15T10:38:28.063Z\"}},\"read_only\":true,\"source_ref\":\"local://runx-crm/cleanup-dev\"},\"status\":\"success\",\"stderr\":\"\",\"stdout\":\"{\\\"crm_cleanup\\\":{\\\"case_id\\\":\\\"globex-002\\\",\\\"source_read\\\":3,\\\"source_record_id\\\":\\\"globex-002\\\",\\\"field_updates\\\":[{\\\"field\\\":\\\"account_status\\\",\\\"value\\\":\\\"at_risk\\\",\\\"source_ref\\\":\\\"globex-002\\\",\\\"basis\\\":\\\"transcript at-risk language\\\"}],\\\"write_result\\\":{\\\"before\\\":{\\\"account_status\\\":\\\"active\\\",\\\"next_action\\\":null,\\\"owner\\\":\\\"sam@vendor.io\\\",\\\"health_score\\\":55,\\\"last_contact\\\":\\\"2026-05-11\\\",\\\"renewal_date\\\":\\\"2026-08-15\\\",\\\"arr\\\":21000,\\\"tags\\\":[\\\"smb\\\"]},\\\"after\\\":{\\\"account_status\\\":\\\"at_risk\\\"},\\\"changed\\\":true,\\\"case_id\\\":\\\"globex-002\\\",\\\"applied_fields\\\":[\\\"account_status\\\"],\\\"sealed_at\\\":\\\"2026-07-15T10:38:28.063Z\\\"},\\\"executed\\\":true},\\\"source_ref\\\":\\\"local://runx-crm/cleanup-dev\\\",\\\"read_only\\\":true}\\n\"}},\"steps\":[{\"receipt_id\":\"sha256:4f45c18d7df131baa9a7d7ef340ac0167b74491af2613a0ff1b936f181ec7a33\",\"skill\":\"cleanup\",\"status\":\"success\",\"step_id\":\"cleanup\"}]}",
+    "structured_output": {
+      "graph": "crm-cleanup",
+      "graph_status": "Succeeded",
+      "step_outputs": {
+        "cleanup": {
+          "crm_cleanup": {
+            "data": {
+              "case_id": "globex-002",
+              "executed": true,
+              "field_updates": [
+                {
+                  "basis": "transcript at-risk language",
+                  "field": "account_status",
+                  "source_ref": "globex-002",
+                  "value": "at_risk"
+                }
+              ],
+              "source_read": 3,
+              "source_record_id": "globex-002",
+              "write_result": {
+                "after": {
+                  "account_status": "at_risk"
+                },
+                "applied_fields": [
+                  "account_status"
+                ],
+                "before": {
+                  "account_status": "active",
+                  "arr": 21000,
+                  "health_score": 55,
+                  "last_contact": "2026-05-11",
+                  "next_action": null,
+                  "owner": "sam@vendor.io",
+                  "renewal_date": "2026-08-15",
+                  "tags": [
+                    "smb"
+                  ]
+                },
+                "case_id": "globex-002",
+                "changed": true,
+                "sealed_at": "2026-07-15T10:38:28.063Z"
+              }
+            }
+          },
+          "raw": "{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"source_read\":3,\"source_record_id\":\"globex-002\",\"field_updates\":[{\"field\":\"account_status\",\"value\":\"at_risk\",\"source_ref\":\"globex-002\",\"basis\":\"transcript at-risk language\"}],\"write_result\":{\"before\":{\"account_status\":\"active\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"health_score\":55,\"last_contact\":\"2026-05-11\",\"renewal_date\":\"2026-08-15\",\"arr\":21000,\"tags\":[\"smb\"]},\"after\":{\"account_status\":\"at_risk\"},\"changed\":true,\"case_id\":\"globex-002\",\"applied_fields\":[\"account_status\"],\"sealed_at\":\"2026-07-15T10:38:28.063Z\"},\"executed\":true},\"source_ref\":\"local://runx-crm/cleanup-dev\",\"read_only\":true}\n",
+          "skill_claim": {
+            "crm_cleanup": {
+              "case_id": "globex-002",
+              "executed": true,
+              "field_updates": [
+                {
+                  "basis": "transcript at-risk language",
+                  "field": "account_status",
+                  "source_ref": "globex-002",
+                  "value": "at_risk"
+                }
+              ],
+              "source_read": 3,
+              "source_record_id": "globex-002",
+              "write_result": {
+                "after": {
+                  "account_status": "at_risk"
+                },
+                "applied_fields": [
+                  "account_status"
+                ],
+                "before": {
+                  "account_status": "active",
+                  "arr": 21000,
+                  "health_score": 55,
+                  "last_contact": "2026-05-11",
+                  "next_action": null,
+                  "owner": "sam@vendor.io",
+                  "renewal_date": "2026-08-15",
+                  "tags": [
+                    "smb"
+                  ]
+                },
+                "case_id": "globex-002",
+                "changed": true,
+                "sealed_at": "2026-07-15T10:38:28.063Z"
+              }
+            },
+            "read_only": true,
+            "source_ref": "local://runx-crm/cleanup-dev"
+          },
+          "status": "success",
+          "stderr": "",
+          "stdout": "{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"source_read\":3,\"source_record_id\":\"globex-002\",\"field_updates\":[{\"field\":\"account_status\",\"value\":\"at_risk\",\"source_ref\":\"globex-002\",\"basis\":\"transcript at-risk language\"}],\"write_result\":{\"before\":{\"account_status\":\"active\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"health_score\":55,\"last_contact\":\"2026-05-11\",\"renewal_date\":\"2026-08-15\",\"arr\":21000,\"tags\":[\"smb\"]},\"after\":{\"account_status\":\"at_risk\"},\"changed\":true,\"case_id\":\"globex-002\",\"applied_fields\":[\"account_status\"],\"sealed_at\":\"2026-07-15T10:38:28.063Z\"},\"executed\":true},\"source_ref\":\"local://runx-crm/cleanup-dev\",\"read_only\":true}\n"
+        }
+      },
+      "steps": [
+        {
+          "receipt_id": "sha256:4f45c18d7df131baa9a7d7ef340ac0167b74491af2613a0ff1b936f181ec7a33",
+          "skill": "cleanup",
+          "status": "success",
+          "step_id": "cleanup"
+        }
+      ]
+    }
+  },
+  "payload": {
+    "graph": "crm-cleanup",
+    "graph_status": "Succeeded",
+    "step_outputs": {
+      "cleanup": {
+        "crm_cleanup": {
+          "data": {
+            "case_id": "globex-002",
+            "executed": true,
+            "field_updates": [
+              {
+                "basis": "transcript at-risk language",
+                "field": "account_status",
+                "source_ref": "globex-002",
+                "value": "at_risk"
+              }
+            ],
+            "source_read": 3,
+            "source_record_id": "globex-002",
+            "write_result": {
+              "after": {
+                "account_status": "at_risk"
+              },
+              "applied_fields": [
+                "account_status"
+              ],
+              "before": {
+                "account_status": "active",
+                "arr": 21000,
+                "health_score": 55,
+                "last_contact": "2026-05-11",
+                "next_action": null,
+                "owner": "sam@vendor.io",
+                "renewal_date": "2026-08-15",
+                "tags": [
+                  "smb"
+                ]
+              },
+              "case_id": "globex-002",
+              "changed": true,
+              "sealed_at": "2026-07-15T10:38:28.063Z"
+            }
+          }
+        },
+        "raw": "{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"source_read\":3,\"source_record_id\":\"globex-002\",\"field_updates\":[{\"field\":\"account_status\",\"value\":\"at_risk\",\"source_ref\":\"globex-002\",\"basis\":\"transcript at-risk language\"}],\"write_result\":{\"before\":{\"account_status\":\"active\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"health_score\":55,\"last_contact\":\"2026-05-11\",\"renewal_date\":\"2026-08-15\",\"arr\":21000,\"tags\":[\"smb\"]},\"after\":{\"account_status\":\"at_risk\"},\"changed\":true,\"case_id\":\"globex-002\",\"applied_fields\":[\"account_status\"],\"sealed_at\":\"2026-07-15T10:38:28.063Z\"},\"executed\":true},\"source_ref\":\"local://runx-crm/cleanup-dev\",\"read_only\":true}\n",
+        "skill_claim": {
+          "crm_cleanup": {
+            "case_id": "globex-002",
+            "executed": true,
+            "field_updates": [
+              {
+                "basis": "transcript at-risk language",
+                "field": "account_status",
+                "source_ref": "globex-002",
+                "value": "at_risk"
+              }
+            ],
+            "source_read": 3,
+            "source_record_id": "globex-002",
+            "write_result": {
+              "after": {
+                "account_status": "at_risk"
+              },
+              "applied_fields": [
+                "account_status"
+              ],
+              "before": {
+                "account_status": "active",
+                "arr": 21000,
+                "health_score": 55,
+                "last_contact": "2026-05-11",
+                "next_action": null,
+                "owner": "sam@vendor.io",
+                "renewal_date": "2026-08-15",
+                "tags": [
+                  "smb"
+                ]
+              },
+              "case_id": "globex-002",
+              "changed": true,
+              "sealed_at": "2026-07-15T10:38:28.063Z"
+            }
+          },
+          "read_only": true,
+          "source_ref": "local://runx-crm/cleanup-dev"
+        },
+        "status": "success",
+        "stderr": "",
+        "stdout": "{\"crm_cleanup\":{\"case_id\":\"globex-002\",\"source_read\":3,\"source_record_id\":\"globex-002\",\"field_updates\":[{\"field\":\"account_status\",\"value\":\"at_risk\",\"source_ref\":\"globex-002\",\"basis\":\"transcript at-risk language\"}],\"write_result\":{\"before\":{\"account_status\":\"active\",\"next_action\":null,\"owner\":\"sam@vendor.io\",\"health_score\":55,\"last_contact\":\"2026-05-11\",\"renewal_date\":\"2026-08-15\",\"arr\":21000,\"tags\":[\"smb\"]},\"after\":{\"account_status\":\"at_risk\"},\"changed\":true,\"case_id\":\"globex-002\",\"applied_fields\":[\"account_status\"],\"sealed_at\":\"2026-07-15T10:38:28.063Z\"},\"executed\":true},\"source_ref\":\"local://runx-crm/cleanup-dev\",\"read_only\":true}\n"
+      }
+    },
+    "steps": [
+      {
+        "receipt_id": "sha256:4f45c18d7df131baa9a7d7ef340ac0167b74491af2613a0ff1b936f181ec7a33",
+        "skill": "cleanup",
+        "status": "success",
+        "step_id": "cleanup"
+      }
+    ]
+  },
+  "receipt": {
+    "acts": [],
+    "authority": {
+      "actor_ref": {
+        "type": "principal",
+        "uri": "runx:principal:local_runtime"
+      },
+      "attenuation": {
+        "parent_authority_ref": null,
+        "subset_proof": null
+      },
+      "authority_proof_refs": [],
+      "enforcement": {
+        "profile_hash": "sha256:635fdb0a7eef93911e3c6bd0b25b5e635edba32e0259133042b3a5f1fb19394e",
+        "redaction_refs": [],
+        "setup_refs": [],
+        "teardown_refs": []
+      },
+      "grant_refs": [],
+      "scope_refs": [],
+      "terms": []
+    },
+    "canonicalization": "runx.receipt.c14n.v1",
+    "created_at": "2026-07-15T10:38:28.030Z",
+    "decisions": [],
+    "digest": "sha256:557f3ef492863147045ae3319570751ae6dac2f6ac752d1d237e132df46105a9",
+    "id": "sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8",
+    "idempotency": {
+      "content_hash": "sha256:crm-cleanup-graph-content",
+      "intent_key": "sha256:crm-cleanup-graph-intent",
+      "trigger_fingerprint": "sha256:crm-cleanup-graph-trigger"
+    },
+    "issuer": {
+      "kid": "hosted-prod-key",
+      "public_key_sha256": "sha256:563748393da68f87f255e61c3b3796c6bc27a54a879316cf102716f65fb7bec9",
+      "type": "hosted"
+    },
+    "lineage": {
+      "children": [
+        {
+          "locator": "sha256:c11ae1785e6e8f6f9b2f0b47e329ea33edde903234f362e4337b2d3b48678db3",
+          "type": "receipt",
+          "uri": "runx:receipt:sha256:4f45c18d7df131baa9a7d7ef340ac0167b74491af2613a0ff1b936f181ec7a33"
+        }
+      ],
+      "sync": []
+    },
+    "schema": "runx.receipt.v1",
+    "seal": {
+      "closed_at": "2026-07-15T10:38:28.030Z",
+      "criteria": [],
+      "disposition": "closed",
+      "last_observed_at": "2026-07-15T10:38:28.030Z",
+      "reason_code": "graph_closed",
+      "summary": "graph crm-cleanup completed"
+    },
+    "signals": [],
+    "signature": {
+      "alg": "Ed25519",
+      "value": "base64:2qU1umy05kqX_2zn1K3JemSh7j1FtVq1MDJmB7G7xVjMMNahbzrFVuYsJ1AkP7rdyMmSlUVL2alTJEo-QXm8BA"
+    },
+    "subject": {
+      "commitments": [],
+      "kind": "graph",
+      "ref": {
+        "type": "harness",
+        "uri": "hrn_crm-cleanup_graph"
+      }
+    }
+  },
+  "receipt_id": "sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8",
+  "registry_provenance": {
+    "digest": "sha256:3be7b4b280ffe2baf8e925fdcf57ba6941cb63247982b2d4a9022e34db406261",
+    "profile_digest": "sha256:f63b06e10a60483e12b3bcc178ca6cae1d976cf2b8a6d7634b3b9f1e555ff946",
+    "registry_key_id": "runx-registry-ed25519-v1",
+    "registry_source": "remote https://api.runx.ai",
+    "registry_source_fingerprint": "ba1ac16b631195fd",
+    "skill_id": "mamonisme/crm-cleanup",
+    "trust_state": "trusted",
+    "trust_tier": "community",
+    "version": "sha-514384e18210"
+  },
+  "run_id": "run_cleanup_08ee35909756",
+  "schema": "runx.skill_run.v1",
+  "skill_name": "crm-cleanup",
+  "status": "sealed"
+}

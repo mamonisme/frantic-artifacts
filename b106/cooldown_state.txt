@@ -1,0 +1,3 @@
+probe: 2026-07-14T13:49:26Z
+retry_after_seconds: 62214 (17.28 h)
+cooldown_clears_at: 2026-07-15T07:06:20Z
