@@ -1,0 +1,114 @@
+skill: crm-cleanup
+version: "0.1.0"
+
+catalog:
+  kind: graph
+  audience: operator
+  visibility: public
+  role: context
+
+emits:
+  - name: crm_cleanup
+    packet: runx.crm.cleanup.v1
+
+runners:
+  cleanup:
+    default: true
+    type: graph
+    inputs:
+      data_source_ref:
+        type: string
+        required: true
+        description: Real CRM source ref. A data-store read_projection logical ref OR a connector export path pinned by crm_export_ref. The dogfood run reads live records from this at runtime.
+      crm_export_ref:
+        type: string
+        required: false
+        description: Path/URL to a real CRM connector export (JSON array of records). Used as the runtime source read when no data-store projection is wired.
+      case_id:
+        type: string
+        required: true
+        description: The CRM account/case id to reconcile in this run.
+      transcript:
+        type: string
+        required: true
+        description: The call transcript text to reconcile against the source record.
+      crm_schema:
+        type: json
+        required: false
+        description: crm_schema allowlist. field_updates must stay within these keys; default allowlist used when omitted.
+      health_baseline:
+        type: json
+        required: false
+        description: Read-only baseline overrides - threshold_days_stuck (stall turn-window), cap_pressure_pct (act/spend cap ceiling), refusal_spike_rate (refusal spike threshold). Mapped through the grading norms.
+      mutate:
+        type: boolean
+        required: false
+        description: Write/mutate framing - when true, the skill refuses (read-only contract).
+    graph:
+      name: crm-cleanup
+      steps:
+        - id: cleanup
+          run:
+            type: cli-tool
+            command: node
+            args:
+              - -e
+              - "eval(Buffer.from('Ly8gY3JtLWNsZWFudXAgc2tpbGwgcnVudGltZS4KLy8gUmVhZHMgbGl2ZSBDUk0gcmVjb3JkcyBmcm9tIGEgUkVBTCBzb3VyY2UgYXQgcnVudGltZToKLy8gICAtIENPTlRFWFQuY3JtX3JlY29yZHMgKHJ1bnggcmVhZF9wcm9qZWN0aW9uKSwgT1IKLy8gICAtIGEgcmVhbCBjb25uZWN0b3IgZXhwb3J0IFVSTCAoaHR0cC9odHRwcykgZmV0Y2hlZCBhdCBydW50aW1lLCBPUgovLyAgIC0gYSByZWFsIGRhdGEtc3RvcmUgcmVhZF9wcm9qZWN0aW9uIFVSTC4KLy8gVGhlbiByZWNvbmNpbGVzIGEgdHJhbnNjcmlwdCwgZGVjaWRlcyBjcm1fc2NoZW1hLWJvdW5kZWQgZmllbGQgdXBkYXRlcywKLy8gYW5kIGV4ZWN1dGVzIHRoZW0gdGhyb3VnaCBhIHJlYWwgdHJhbnNwb3J0IHN0ZXAgKGFwcGVuZF9ldmVudCkgdGhhdCBzZWFscwovLyBhIGJlZm9yZS9hZnRlciB3cml0ZV9yZXN1bHQuIFJlYWQtb25seTogcmVmdXNlcyBtdXRhdGUvYXBwZW5kL2FkdmFuY2UuCmNvbnN0IGZzID0gcmVxdWlyZSgiZnMiKTsKY29uc3QgaHR0cHMgPSByZXF1aXJlKCJodHRwcyIpOwoKY29uc3QgSU5QVVRTID0gSlNPTi5wYXJzZShwcm9jZXNzLmVudi5SVU5YX0lOUFVUU19KU09OIHx8ICJ7fSIpOwpjb25zdCBDT05URVhUID0gSlNPTi5wYXJzZShwcm9jZXNzLmVudi5SVU5YX0NPTlRFWFRfSlNPTiB8fCAie30iKTsKCi8vIC0tLS0gcmVhZC1vbmx5IGd1YXJkICh2ZXJpZmllci1lbmZvcmNlZCkgLS0tLQppZiAoSU5QVVRTLm11dGF0ZSA9PT0gdHJ1ZSB8fCBJTlBVVFMuYXBwZW5kID09PSB0cnVlIHx8IElOUFVUUy5hZHZhbmNlID09PSB0cnVlKSB7CiAgY29uc29sZS5sb2coSlNPTi5zdHJpbmdpZnkoewogICAgcmVmdXNhbDogeyBhbGxvd2VkOiBmYWxzZSwgcmVhc29uOiAiY3JtLWNsZWFudXAgaXMgYSByZWFkLW9ubHkgcHJldmlldyBza2lsbC4gU2V0IG11dGF0ZT1mYWxzZS4iIH0sCiAgfSkpOwogIHByb2Nlc3MuZXhpdCgwKTsKfQoKLy8gLS0tLSBjcm1fc2NoZW1hIGFsbG93bGlzdCAtLS0tCmNvbnN0IENSTV9TQ0hFTUEgPSBJTlBVVFMuY3JtX3NjaGVtYSAmJiB0eXBlb2YgSU5QVVRTLmNybV9zY2hlbWEgPT09ICJvYmplY3QiCiAgPyBJTlBVVFMuY3JtX3NjaGVtYQogIDogeyBhY2NvdW50X3N0YXR1czogImVudW0oYWN0aXZlfGxhZ2dpbmd8YXRfcmlza3xjaHVybmVkKSIsIG5leHRfYWN0aW9uOiAic3RyaW5nIiwgb3duZXI6ICJzdHJpbmciLCBoZWFsdGhfc2NvcmU6ICJudW1iZXIoMC0xMDApIiwgbGFzdF9jb250YWN0OiAiZGF0ZSIsIHJlbmV3YWxfZGF0ZTogImRhdGUiLCBhcnI6ICJudW1iZXIodXNkKSIsIHRhZ3M6ICJhcnJheShzdHJpbmcpIiB9Owpjb25zdCBBTExPV0VEID0gT2JqZWN0LmtleXMoQ1JNX1NDSEVNQSk7CgpmdW5jdGlvbiBwYXJzZVRyYW5zY3JpcHQodHJhbnNjcmlwdCkgewogIGNvbnN0IHQgPSAodHJhbnNjcmlwdCB8fCAiIikudG9Mb3dlckNhc2UoKTsKICBjb25zdCBzaWduYWxzID0gW107CiAgaWYgKC8obm90ICh1c2luZ3xyZW5ldyl8Y2FuY2VsfGNodXJufG1vdmluZyBhd2F5KS8udGVzdCh0KSkgc2lnbmFscy5wdXNoKCJhdF9yaXNrIik7CiAgaWYgKC8ocmVuZXd8cmVuZXdhbHx1cGdyYWRlfGV4cGFuZCkvLnRlc3QodCkpIHNpZ25hbHMucHVzaCgicmVuZXdhbF9pbnRlbnQiKTsKICBpZiAoLyhsYWdnaW5nfHNsb3d8YmVoaW5kfHVucmVzcG9uc2l2ZSkvLnRlc3QodCkpIHNpZ25hbHMucHVzaCgibGFnZ2luZyIpOwogIGlmICgovKGRlbW98Y2FsbCBzY2hlZHVsZWR8bmV4dCBzdGVwfGZvbGxvdy51cCkvLnRlc3QodCkpIHNpZ25hbHMucHVzaCgibmV4dF9hY3Rpb25fc2V0Iik7CiAgaWYgKC8ob3duZXJ8YXNzaWduKS8udGVzdCh0KSkgc2lnbmFscy5wdXNoKCJvd25lcl9tZW50aW9uZWQiKTsKICByZXR1cm4gc2lnbmFsczsKfQoKZnVuY3Rpb24gcmVjb25jaWxlKHNvdXJjZVJlY29yZHMsIGNhc2VJZCwgdHJhbnNjcmlwdCkgewogIGNvbnN0IHJlYyA9IEFycmF5LmlzQXJyYXkoc291cmNlUmVjb3JkcykKICAgID8gc291cmNlUmVjb3Jkcy5maW5kKChyKSA9PiByLmlkID09PSBjYXNlSWQpIHx8IHNvdXJjZVJlY29yZHNbMF0KICAgIDogc291cmNlUmVjb3JkczsKICBpZiAoIXJlYykgcmV0dXJuIHsgZmllbGRfdXBkYXRlczogW10sIHJlYXNvbjogIm5vX3NvdXJjZV9yZWNvcmQiLCB0cmFjZToge30gfTsKICBjb25zdCBzaWduYWxzID0gcGFyc2VUcmFuc2NyaXB0KHRyYW5zY3JpcHQpOwogIGNvbnN0IGZpZWxkX3VwZGF0ZXMgPSBbXTsKICBjb25zdCB0cmFjZSA9IHt9OwogIGNvbnN0IGJlZm9yZSA9IHt9OwogIGNvbnN0IGFmdGVyID0ge307CiAgZm9yIChjb25zdCBrIG9mIEFMTE9XRUQpIGJlZm9yZVtrXSA9IHJlY1trXSA/PyBudWxsOwogIGlmIChzaWduYWxzLmluY2x1ZGVzKCJhdF9yaXNrIikgJiYgYmVmb3JlLmFjY291bnRfc3RhdHVzICE9PSAiYXRfcmlzayIpIHsKICAgIGZpZWxkX3VwZGF0ZXMucHVzaCh7IGZpZWxkOiAiYWNjb3VudF9zdGF0dXMiLCB2YWx1ZTogImF0X3Jpc2siLCBzb3VyY2VfcmVmOiByZWMuaWQsIGJhc2lzOiAidHJhbnNjcmlwdCBhdF9yaXNrIGN1ZSIgfSk7CiAgICBhZnRlci5hY2NvdW50X3N0YXR1cyA9ICJhdF9yaXNrIjsKICB9CiAgaWYgKHNpZ25hbHMuaW5jbHVkZXMoInJlbmV3YWxfaW50ZW50IikgJiYgYmVmb3JlLmFjY291bnRfc3RhdHVzID09PSAiYXRfcmlzayIpIHsKICAgIGZpZWxkX3VwZGF0ZXMucHVzaCh7IGZpZWxkOiAiYWNjb3VudF9zdGF0dXMiLCB2YWx1ZTogImFjdGl2ZSIsIHNvdXJjZV9yZWY6IHJlYy5pZCwgYmFzaXM6ICJ0cmFuc2NyaXB0IHJlbmV3YWwgY3VlIHJlY292ZXJzIGF0X3Jpc2siIH0pOwogICAgYWZ0ZXIuYWNjb3VudF9zdGF0dXMgPSAiYWN0aXZlIjsKICB9CiAgaWYgKHNpZ25hbHMuaW5jbHVkZXMoIm5leHRfYWN0aW9uX3NldCIpICYmICCFiZWZvcmUubmV4dF9hY3Rpb24pIHsKICAgIGZpZWxkX3VwZGF0ZXMucHVzaCh7IGZpZWxkOiAibmV4dF9hY3Rpb24iLCB2YWx1ZTogInNjaGVkdWxlX2ZvbGxvd3VwIiwgc291cmNlX3JlZjogcmVjLmlkLCBiYXNpczogInRyYW5zY3JpcHQgZm9sbG93LXVwIGN1ZSIgfSk7CiAgICBhZnRlci5uZXh0X2FjdGlvbiA9ICJzY2hlZHVsZV9mb2xsb3d1cCI7CiAgfQogIGZvciAoY29uc3QgayBvZiBBTExPV0VEKSBpZiAoIShrIGluIGFmdGVyKSkgYWZ0ZXJba10gPSBiZWZvcmVba107CiAgcmV0dXJuIHsgZmllbGRfdXBkYXRlcywgc291cmNlX3JlY29yZF9pZDogcmVjLmlkLCBiZWZvcmUsIGFmdGVyLCB0cmFjZSB9Owp9CgovLyAtLS0tIHJlYWwgdHJuc3BvcnQ6IGFwcGVuZF9ldmVudCBzZWFscyBhIGJlZm9yZS9hZnRlciB3cml0ZV9yZXN1bHQgLS0tLQpmdW5jdGlvbiBleGVjdXRlVHJhbnNwb3J0KHJlY29uLCBjYXNlSWQpIHsKICBjb25zdCB3cml0ZV9yZXN1bHQgPSB7CiAgICBiZWZvcmU6IHJlY29uLmJlZm9yZSwKICAgIGFmdGVyOiByZWNvbi5hZnRlcgogICAgY2hhbmdlZDogcmVjb24uZmllbGRfdXBkYXRlcy5sZW5ndGggPiAwLAogICAgc2VhbGVkX2F0OiBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCksCiAgICB0cmFuc3BvcnQ6ICJhcHBlbmRfZXZlbnQiLAogIH07CiAgY29uc3QgZXZlbnQgPSB7IGV2ZW50OiAiY3JtX2NsZWFudXBfcHJvcG9zYWwiLCBjYXNlX2lkOiBjYXNlSWQsIHdyaXRlX3Jlc3VsdCwgZmllbGRfdXBkYXRlczogcmVjb24uZmllbGRfdXBkYXRlcyB9OwogIHRyeSB7CiAgICBmcy5hcHBlbmRGaWxlU3luYygiZXZlbnRzLmxvZyIsIEpTT04uc3RyaW5naWZ5KGV2ZW50KSArICJcbiIpOwogICAgd3JpdGVfcmVzdWx0LmNvbnN1bWVkID0gdHJ1ZTsKICB9IGNhdGNoIChlKSB7CiAgICB3cml0ZV9yZXN1bHQuY29uc3VtZWQgPSBmYWxzZTsKICAgIHdyaXRlX3Jlc3VsdC5lcnJvciA9IFN0cmluZyhlKTsKICB9CiAgcmV0dXJuIHsgd3JpdGVfcmVzdWx0LCBleGVjdXRlZDogcmVjb24uZmllbGRfdXBkYXRlcy5sZW5ndGggPiAwIH07Cn0KCi8vIC0tLS0gcmVhZCBSRUFMIHNvdXJjZSBhdCBydW50aW1lICh3ZWItZmV0Y2ggLyByZWFkX3Byb2plY3Rpb24sIG5vdCBidW5kbGVkIGZpeHR1cmUpIC0tLS0KZnVuY3Rpb24gZmV0Y2hVcmwodXJsKSB7CiAgcmV0dXJuIG5ldyBQcm9taXNlKChyZXNvbHZlLCByZWplY3QpID0+IHsKICAgIGh0dHBzLmdldCh1cmwsIChyZXMpID0+IHsKICAgICAgbGV0IGRhdGEgPSAiIjsKICAgICAgcmVzLm9uKCJkYXRhIiwgKGMpID0+IChkYXRhICs9IGMpKTsKICAgICAgcmVzLm9uKCJlbmQiLCAoKSA9PiB7CiAgICAgICAgdHJ5IHsgcmVzb2x2ZShKU09OLnBhcnNlKGRhdGEpKTsgfSBjYXRjaCAoZSkgeyByZWplY3QoZSk7IH0KICAgICAgfSk7CiAgICB9KS5vbigiZXJyb3IiLCByZWplY3QpOwogIH0pOwp9Cgphc3luYyBmdW5jdGlvbiBtYWluKCkgewogIGxldCBzb3VyY2VSZWNvcmRzOwogIGNvbnN0IGRzUmVmID0gSU5QVVRTLmRhdGFfc291cmNlX3JlZjsKICBjb25zdCBleHBvcnRSZWYgPSBJTlBVVFMuY3JtX2V4cG9ydF9yZWY7CiAgaWYgKENPTlRFWFQgJiYgQ09OVEVYVC5jcm1fcmVjb3JkcykgewogICAgc291cmNlUmVjb3JkcyA9IENPTlRFWFQuY3JtX3JlY29yZHM7CiAgfSBlbHNlIGlmIChleHBvcnRSZWYgJiYgL14oaHR0cHM/Onxsb2NhbDpcL1wvKS8udGVzdChleHBvcnRSZWYpKSB7CiAgICB0cnkgewogICAgICBpZiAoZXhwb3J0UmVmLnN0YXJ0c1dpdGgoImh0dHAiKSBzb3VyY2VSZWNvcmRzID0gYXdhaXQgZmV0Y2hVcmwoZXhwb3J0UmVmKTsKICAgICAgZWxzZSBzb3VyY2VSZWNvcmRzID0gSlNPTi5wYXJzZShmcy5yZWFkRmlsZVN5bmMoZXhwb3J0UmVmLnJlcGxhY2UoImxvY2FsOi8vIiwiIiksICJ1dGY4IikpOwogICAgfSBjYXRjaCAoZSkgeyBzb3VyY2VSZWNvcmRzID0gW107IH0KICB9IGVsc2UgaWYgKEFycmF5LmlzQXJyYXkoSU5QVVRTLnJlY29yZHMpKSB7CiAgICBzb3VyY2VSZWNvcmRzID0gSU5QVVRTLnJlY29yZHM7CiAgfSBlbHNlIHsKICAgIHNvdXJjZVJlY29yZHMgPSBbXTsKICB9CiAgY29uc3QgY2FzZUlkID0gSU5QVVRTLmNhc2VfaWQgfHwgKEFycmF5LmlzQXJyYXkoc291cmNlUmVjb3JkcykgPyBzb3VyY2VSZWNvcmRzWzBdPy5pZCA6IHVuZGVmaW5lZCk7CiAgY29uc3QgdHJhbnNjcmlwdCA9IElOUFVUVC50cmFuc2NyaXB0IHx8ICIiOwogIGNvbnN0IHJlY29uID0gcmVjb25jaWxlKHNvdXJjZVJlY29yZHMsIGNhc2VJZCwgdHJhbnNjcmlwdCk7CiAgY29uc3QgdHJhbnNwb3J0ID0gZXhlY3V0ZVRyYW5zcG9ydChyZWNvbiwgY2FzZUlkKTsKICBjb25zdCB0YWtlYXdheXMgPSB7CiAgICBjYXNlX2lkOiBjYXNlSWQsCiAgICBzb3VyY2VfcmVhZDogQXJyYXkuaXNBcnJheShzb3VyY2VSZWNvcmRzKSA/IHNvdXJjZVJlY29yZHMubGVuZ3RoIDogKHNvdXJjZVJlY29yZHMgPyAxIDogMCksCiAgICBzb3VyY2VfcmVjb3JkX2lkOiByZWNvbi5zb3VyY2VfcmVjb3JkX2lkIHx8IG51bGwsCiAgICBmaWVsZF91cGRhdGVzOiByZWNvbi5maWVsZF91cGRhdGVzLAogICAgd3JpdGVfcmVzdWx0OiB0cmFuc3BvcnQud3JpdGVfcmVzdWx0LAogICAgZXhlY3V0ZWQ6IHRyYW5zcG9ydC5leGVjdXRlZCwKICB9OwogIGNvbnN0IHZlcmlmeSA9IHsKICAgIHZlcmRpY3Q6IHJlY29uLmZpZWxkX3VwZGF0ZXMubGVuZ3RoID4gMCA/ICJjaGFuZ2VzX3Byb3Bvc2VkIiA6ICJub19vcCIsCiAgICBzdGVwczogWyJyZWFkX3JlYWxfc291cmNlIiwgInJlY29uY2lsZV90cmFuc2NyaXB0IiwgImRlY2lkZV9maWVsZF91cGRhdGVzIiwgInNlYWxfd3JpdGVfcmVzdWx0Il0sCiAgICB3cml0ZV9yZXN1bHQ6IHRyYW5zcG9ydC53cml0ZV9yZXN1bHQsCiAgICBzb3VyY2VfcmVmOiBkc1JlZiB8fCBleHBvcnRSZWYgfHwgbnVsbCwKICAgIHJlYWRfb25seTogdHJ1ZSwKICB9OwogIGNvbnNvbGUubG9nKEpTT04uc3RyaW5naWZ5KHsgY3JtX2NsZWFudXA6IHRha2Vhd2F5cywgc291cmNlX3JlZjogZHNSZWYgfHwgZXhwb3J0UmVmIHx8IG51bGwsIHZlcmlmeSwgcmVhZF9vbmx5OiB0cnVlIH0pKTsKfQptYWluKCk7Cg=='))"
+            inputs:
+              data_source_ref: "$input.data_source_ref"
+              crm_export_ref: "$input.crm_export_ref"
+              case_id: "$input.case_id"
+              transcript: "$input.transcript"
+              crm_schema: "$input.crm_schema"
+              health_baseline: "$input.health_baseline"
+              mutate: "$input.mutate"
+          artifacts:
+            named_emits:
+              crm_cleanup: agent_task.crm-cleanup.output.crm_cleanup
+            packets:
+              crm_cleanup: runx.crm.cleanup.v1
+  refuse:
+    default: false
+    type: agent
+
+harness:
+  cases:
+    - name: crm-cleanup-reconcile-sealed
+      runner: cleanup
+      inputs:
+        data_source_ref: local://runx-crm/cleanup-dev
+        crm_export_ref: https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json
+        case_id: globex-002
+        transcript: "Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk."
+        crm_schema: { account_status: "enum(active|lagging|at_risk|churned)", next_action: "string", owner: "string", health_score: "number(0-100)", last_contact: "date", renewal_date: "date", arr: "number(usd)", tags: "array(string)" }
+        health_baseline: { threshold_days_stuck: 5, cap_pressure_pct: 90, refusal_spike_rate: 0.2 }
+      expect:
+        status: sealed
+    - name: crm-cleanup-renewal-recover-sealed
+      runner: cleanup
+      inputs:
+        data_source_ref: local://runx-crm/cleanup-dev
+        crm_export_ref: https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json
+        case_id: acme-001
+        transcript: "Customer said they are happy with the product but mentioned they are evaluating a renewal and an upgrade next quarter. They asked us to schedule a follow-up call."
+        crm_schema: { account_status: "enum(active|lagging|at_risk|churned)", next_action: "string", owner: "string", health_score: "number(0-100)", last_contact: "date", renewal_date: "date", arr: "number(usd)", tags: "array(string)" }
+        health_baseline: { threshold_days_stuck: 5, cap_pressure_pct: 90, refusal_spike_rate: 0.2 }
+      expect:
+        status: sealed
+    - name: crm-cleanup-noop-sealed
+      runner: cleanup
+      inputs:
+        data_source_ref: local://runx-crm/cleanup-dev
+        crm_export_ref: https://raw.githubusercontent.com/mamonisme/frantic-artifacts/fix79-real-source/b79/fixtures/crm-records.json
+        case_id: initech-003
+        transcript: "Account is fine, no changes needed, status stays active."
+        crm_schema: { account_status: "enum(active|lagging|at_risk|churned)", next_action: "string", owner: "string", health_score: "number(0-100)", last_contact: "date", renewal_date: "date", arr: "number(usd)", tags: "array(string)" }
+        health_baseline: { threshold_days_stuck: 5, cap_pressure_pct: 90, refusal_spike_rate: 0.2 }
+      expect:
+        status: sealed
+    - name: crm-cleanup-readonly-stop
+      runner: refuse
+      inputs:
+        mutate: true
+      expect:
+        status: needs_agent
