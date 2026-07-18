@@ -1,18 +1,18 @@
 {
   "schema": "frantic.verification.v1",
   "bounty": 79,
-  "package": "mamonisme/crm-cleanup@sha-514384e18210",
-  "source_revision": "c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1",
+  "package": "mamonisme/crm-cleanup@sha-1908e4534fff",
+  "source_revision": "4fa1bbe8656a079363426edd6c4d401d9f0b1a19",
   "publisher_owner": "mamonisme",
   "runx_cli_version": "runx-cli 0.7.1",
-  "public_url": "https://runx.ai/x/mamonisme/crm-cleanup@sha-514384e18210",
-  "source_url": "https://github.com/mamonisme/runx/tree/c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1/skills/crm-cleanup",
+  "public_url": "https://runx.ai/x/mamonisme/crm-cleanup@sha-1908e4534fff",
+  "source_url": "https://github.com/mamonisme/runx/tree/4fa1bbe8656a079363426edd6c4d401d9f0b1a19/skills/crm-cleanup",
   "pr_url": "https://github.com/runxhq/runx/pull/337",
-  "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1/skills/crm-cleanup/X.yaml",
-  "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1/skills/crm-cleanup/SKILL.md",
+  "raw_x_yaml": "https://raw.githubusercontent.com/mamonisme/runx/4fa1bbe8656a079363426edd6c4d401d9f0b1a19/skills/crm-cleanup/X.yaml",
+  "raw_skill_md": "https://raw.githubusercontent.com/mamonisme/runx/4fa1bbe8656a079363426edd6c4d401d9f0b1a19/skills/crm-cleanup/SKILL.md",
   "publish_method": "runx registry publish skills/crm-cleanup/SKILL.md --registry https://api.runx.ai",
   "publish_state": "PUBLISHED (live hosted registry, listing resolves HTTP 200; remote publish succeeded)",
-  "install_command": "runx add mamonisme/crm-cleanup@sha-514384e18210",
+  "install_command": "runx add mamonisme/crm-cleanup@sha-1908e4534fff",
   "local_harness": {
     "status": "passed",
     "case_count": 4,
@@ -24,9 +24,9 @@
       "crm-cleanup-readonly-stop"
     ],
     "harness_receipts": [
-      "sha256:18cb340869a97ffebd0749148700734dcb13a9075bcfab38c827bae64dfbace2",
-      "sha256:33f6168a369e923c7c31a3a65e6bf548806c29eace0868b4322d2a9f582bcdb6",
-      "sha256:b1dfee62d0a98a2c2e401e792f36727834b9751f818e9d02368eae6303623280"
+      "sha256:c0ec1d5c8c04e451b0177aad528657ea7674d9d28a2552a0925b94d5c48ab4c0",
+      "sha256:867a57a72e25fd5d5b752ed38be17c5bcb14439582ee7184b12dfbc6d806c74e",
+      "sha256:e28cf542b49cb7a7e837d9b33dc4ffa2e50f92be9de07a3f7ceb95718930194e"
     ]
   },
   "hosted_harness": {
@@ -34,34 +34,32 @@
     "note": "green after remote publish; remote publish requires >=1 negative/stop case, satisfied by crm-cleanup-readonly-stop (needs_agent)."
   },
   "dogfood": {
-    "command": "runx skill mamonisme/crm-cleanup@sha-514384e18210 --registry https://api.runx.ai -i data_source_ref=local://runx-crm/cleanup-dev -i crm_export_ref=/root/workspace/runx/skills/crm-cleanup/fixtures/crm-records.json -i case_id=globex-002 -i transcript='Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.' --json --approve-operator-context <digest> --receipts /tmp/dogfood-receipts",
-    "receipt_ref": "runx:receipt:sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8",
+    "command": "runx skill mamonisme/crm-cleanup@sha-1908e4534fff --registry https://api.runx.ai -i data_source_ref=external://graphql-compose-northwind/customers -i crm_export_ref=https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/customers.json -i case_id=AROUT -i transcript='Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.' --json --approve-operator-context <digest> --receipts /tmp/dogfood79",
+    "receipt_ref": "runx:receipt:sha256:4275618ceb1d42c3f006eebdab68808bd0b682fe298e39678b5f63c637d7aefe",
     "receipt_schema": "runx.skill_run.v1",
+    "run_id": "run_cleanup_7bd490815d40",
     "registry_source": "remote https://api.runx.ai",
     "trust_state": "trusted",
     "takeaways": {
-      "case_id": "globex-002",
-      "source_read": 3,
-      "source_record_id": "globex-002",
+      "case_id": "AROUT",
+      "source_read": 91,
+      "source_record_id": "AROUT",
+      "source_is_external": true,
       "field_updates": [
-        {
-          "field": "account_status",
-          "value": "at_risk",
-          "source_ref": "globex-002"
-        }
+        { "field": "account_status", "value": "at_risk" },
+        { "field": "next_action", "value": "schedule_save_call" },
+        { "field": "health_score", "value": 35 },
+        { "field": "tags", "value": ["retention"] }
       ],
       "write_result": {
-        "before": {
-          "account_status": "active"
-        },
-        "after": {
-          "account_status": "at_risk"
-        },
+        "before": { "account_status": "active", "health_score": 60 },
+        "after": { "account_status": "at_risk", "health_score": 35 },
         "changed": true
       },
+      "transport": "append_event to crm_cleanup_decision aggregate; sealed_event_id sha256:51ce853a...",
       "executed": true
     }
   },
   "runx_verify_verdict": "registry-signed (trust_state=trusted); local trusted-key verify env-limited, not a skill fault.",
-  "new_user_path": "runx add mamonisme/crm-cleanup@sha-514384e18210 ; then runx skill mamonisme/crm-cleanup@sha-514384e18210 --registry https://api.runx.ai -i data_source_ref=... -i crm_export_ref=<export.json> -i case_id=<id> -i transcript='...' --json"
+  "new_user_path": "runx add mamonisme/crm-cleanup@sha-1908e4534fff ; then runx skill mamonisme/crm-cleanup@sha-1908e4534fff --registry https://api.runx.ai -i data_source_ref=external://graphql-compose-northwind/customers -i crm_export_ref=<export.json> -i case_id=<id> -i transcript='...' --json"
 }

@@ -1,0 +1,194 @@
+{
+  "closure": {
+    "closed_at": "2026-07-18T14:19:36.254Z",
+    "disposition": "closed",
+    "reason_code": "graph_closed",
+    "summary": "graph crm-cleanup completed"
+  },
+  "execution": {
+    "exit_code": 0,
+    "skill_claim": {
+      "graph": "crm-cleanup",
+      "graph_status": "Succeeded",
+      "step_outputs": {
+        "reconcile": {
+          "status": "success",
+          "stderr": "",
+          "stdout": ""
+        },
+        "transport": {
+          "status": "success",
+          "stderr": "",
+          "stdout": ""
+        }
+      },
+      "steps": [
+        {
+          "receipt_id": "sha256:8deb6fadaa1288020d62ba28d3c185b4ae547f580ea1cc02377efe7e2d1dad01",
+          "skill": "reconcile",
+          "status": "success",
+          "step_id": "reconcile"
+        },
+        {
+          "receipt_id": "sha256:e20bf900a156f1244419a90419841b517f1034f083758f3cf2c2aa126c55c60e",
+          "skill": "transport",
+          "status": "success",
+          "step_id": "transport"
+        }
+      ]
+    },
+    "stderr": "",
+    "stdout": "{\"graph\":\"crm-cleanup\",\"graph_status\":\"Succeeded\",\"step_outputs\":{\"reconcile\":{\"status\":\"success\",\"stderr\":\"\",\"stdout\":\"\"},\"transport\":{\"status\":\"success\",\"stderr\":\"\",\"stdout\":\"\"}},\"steps\":[{\"receipt_id\":\"sha256:8deb6fadaa1288020d62ba28d3c185b4ae547f580ea1cc02377efe7e2d1dad01\",\"skill\":\"reconcile\",\"status\":\"success\",\"step_id\":\"reconcile\"},{\"receipt_id\":\"sha256:e20bf900a156f1244419a90419841b517f1034f083758f3cf2c2aa126c55c60e\",\"skill\":\"transport\",\"status\":\"success\",\"step_id\":\"transport\"}]}",
+    "structured_output": {
+      "graph": "crm-cleanup",
+      "graph_status": "Succeeded",
+      "step_outputs": {
+        "reconcile": {
+          "status": "success",
+          "stderr": "",
+          "stdout": ""
+        },
+        "transport": {
+          "status": "success",
+          "stderr": "",
+          "stdout": ""
+        }
+      },
+      "steps": [
+        {
+          "receipt_id": "sha256:8deb6fadaa1288020d62ba28d3c185b4ae547f580ea1cc02377efe7e2d1dad01",
+          "skill": "reconcile",
+          "status": "success",
+          "step_id": "reconcile"
+        },
+        {
+          "receipt_id": "sha256:e20bf900a156f1244419a90419841b517f1034f083758f3cf2c2aa126c55c60e",
+          "skill": "transport",
+          "status": "success",
+          "step_id": "transport"
+        }
+      ]
+    }
+  },
+  "payload": {
+    "graph": "crm-cleanup",
+    "graph_status": "Succeeded",
+    "step_outputs": {
+      "reconcile": {
+        "status": "success",
+        "stderr": "",
+        "stdout": ""
+      },
+      "transport": {
+        "status": "success",
+        "stderr": "",
+        "stdout": ""
+      }
+    },
+    "steps": [
+      {
+        "receipt_id": "sha256:8deb6fadaa1288020d62ba28d3c185b4ae547f580ea1cc02377efe7e2d1dad01",
+        "skill": "reconcile",
+        "status": "success",
+        "step_id": "reconcile"
+      },
+      {
+        "receipt_id": "sha256:e20bf900a156f1244419a90419841b517f1034f083758f3cf2c2aa126c55c60e",
+        "skill": "transport",
+        "status": "success",
+        "step_id": "transport"
+      }
+    ]
+  },
+  "receipt": {
+    "acts": [],
+    "authority": {
+      "actor_ref": {
+        "type": "principal",
+        "uri": "runx:principal:local_runtime"
+      },
+      "attenuation": {
+        "parent_authority_ref": null,
+        "subset_proof": null
+      },
+      "authority_proof_refs": [],
+      "enforcement": {
+        "profile_hash": "sha256:635fdb0a7eef93911e3c6bd0b25b5e635edba32e0259133042b3a5f1fb19394e",
+        "redaction_refs": [],
+        "setup_refs": [],
+        "teardown_refs": []
+      },
+      "grant_refs": [],
+      "scope_refs": [],
+      "terms": []
+    },
+    "canonicalization": "runx.receipt.c14n.v1",
+    "created_at": "2026-07-18T14:19:36.254Z",
+    "decisions": [],
+    "digest": "sha256:a0b2107ba0a8c3e4a4f9f41eaf97411c7e2f0ef27540b628a6b81042c3ec98ed",
+    "id": "sha256:4275618ceb1d42c3f006eebdab68808bd0b682fe298e39678b5f63c637d7aefe",
+    "idempotency": {
+      "content_hash": "sha256:crm-cleanup-graph-content",
+      "intent_key": "sha256:crm-cleanup-graph-intent",
+      "trigger_fingerprint": "sha256:crm-cleanup-graph-trigger"
+    },
+    "issuer": {
+      "kid": "hosted-prod-key",
+      "public_key_sha256": "sha256:563748393da68f87f255e61c3b3796c6bc27a54a879316cf102716f65fb7bec9",
+      "type": "hosted"
+    },
+    "lineage": {
+      "children": [
+        {
+          "locator": "sha256:0a17614cf11e2a24c1b917f79c4ecc3784d8b1a6e5c070a4a36f0a5bb1d849dd",
+          "type": "receipt",
+          "uri": "runx:receipt:sha256:8deb6fadaa1288020d62ba28d3c185b4ae547f580ea1cc02377efe7e2d1dad01"
+        },
+        {
+          "locator": "sha256:71a314bed070cc7225446f1e4ee926a7b9e5db00d4fba8ffd27dbc5a6d74f8b9",
+          "type": "receipt",
+          "uri": "runx:receipt:sha256:e20bf900a156f1244419a90419841b517f1034f083758f3cf2c2aa126c55c60e"
+        }
+      ],
+      "sync": []
+    },
+    "schema": "runx.receipt.v1",
+    "seal": {
+      "closed_at": "2026-07-18T14:19:36.254Z",
+      "criteria": [],
+      "disposition": "closed",
+      "last_observed_at": "2026-07-18T14:19:36.254Z",
+      "reason_code": "graph_closed",
+      "summary": "graph crm-cleanup completed"
+    },
+    "signals": [],
+    "signature": {
+      "alg": "Ed25519",
+      "value": "base64:4-ln0QTCX7_2Cb-zflX6fpi9rj7s8K4i9oLenrXj9SWDL1Y_4qEIGDfN-TMtE6GLmhr9C6GBve-FIyzvpmMKAg"
+    },
+    "subject": {
+      "commitments": [],
+      "kind": "graph",
+      "ref": {
+        "type": "harness",
+        "uri": "hrn_crm-cleanup_graph"
+      }
+    }
+  },
+  "receipt_id": "sha256:4275618ceb1d42c3f006eebdab68808bd0b682fe298e39678b5f63c637d7aefe",
+  "registry_provenance": {
+    "digest": "sha256:3be7b4b280ffe2baf8e925fdcf57ba6941cb63247982b2d4a9022e34db406261",
+    "profile_digest": "sha256:8b9c20aa40e51b44ad5e2ad7eef0dfd747a3181f52dd57bb1954c37a18059d21",
+    "registry_key_id": "runx-registry-ed25519-v1",
+    "registry_source": "remote https://api.runx.ai",
+    "registry_source_fingerprint": "ba1ac16b631195fd",
+    "skill_id": "mamonisme/crm-cleanup",
+    "trust_state": "trusted",
+    "trust_tier": "community",
+    "version": "sha-1908e4534fff"
+  },
+  "run_id": "run_cleanup_7bd490815d40",
+  "schema": "runx.skill_run.v1",
+  "skill_name": "crm-cleanup",
+  "status": "sealed"
+}

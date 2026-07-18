@@ -1,13 +1,14 @@
 {
   "schema": "frantic.evidence.dogfood.v1",
   "bounty": 79,
-  "summary": "crm-cleanup runx skill published to the live registry (mamonisme/crm-cleanup@sha-514384e18210), green local + hosted harness (4 cases incl. a read-only stop-case), and proven in one sealed post-publish dogfood run that reads a real CRM connector export at runtime, reconciles a transcript, and seals a before/after write_result. Read-only preview: refuses mutate/append/advance via the refuse agent runner.",
+  "runx_version": "runx-cli 0.7.1",
+  "summary": "crm-cleanup runx skill published to the live registry (mamonisme/crm-cleanup@sha-1908e4534fff), green local + hosted harness (4 cases incl. a read-only stop-case), and proven in one sealed post-publish dogfood run that reads a REAL external CRM connector export (graphql-compose Northwind customers, 91 records) over HTTPS at runtime, reconciles a transcript, and executes a real append_event transport that seals a before/after write_result bound to the decision. Read-only preview: refuses mutate/append via the refuse agent runner.",
   "dogfood": {
-    "package": "mamonisme/crm-cleanup@sha-514384e18210",
+    "package": "mamonisme/crm-cleanup@sha-1908e4534fff",
     "input": {
-      "data_source_ref": "local://runx-crm/cleanup-dev",
-      "crm_export_ref": "/root/workspace/runx/skills/crm-cleanup/fixtures/crm-records.json",
-      "case_id": "globex-002",
+      "data_source_ref": "external://graphql-compose-northwind/customers",
+      "crm_export_ref": "https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/customers.json",
+      "case_id": "AROUT",
       "transcript": "Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.",
       "crm_schema": {
         "account_status": "enum(active|lagging|at_risk|churned)",
@@ -25,9 +26,9 @@
         "refusal_spike_rate": 0.2
       }
     },
-    "command": "runx skill mamonisme/crm-cleanup@sha-514384e18210 --registry https://api.runx.ai -i data_source_ref=local://runx-crm/cleanup-dev -i crm_export_ref=/root/workspace/runx/skills/crm-cleanup/fixtures/crm-records.json -i case_id=globex-002 -i transcript='Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.' --json --approve-operator-context <digest> --receipts /tmp/dogfood-receipts",
-    "receipt_ref": "runx:receipt:sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8",
-    "verify_verdict": "sealed (post-publish dogfood run, runx.skill_run.v1 envelope, registry_source=remote https://api.runx.ai, trust_state=trusted). Distinct from the harness fixture seals.",
+    "command": "runx skill mamonisme/crm-cleanup@sha-1908e4534fff --registry https://api.runx.ai -i data_source_ref=external://graphql-compose-northwind/customers -i crm_export_ref=https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/json/customers.json -i case_id=AROUT -i transcript='Customer has gone quiet, not returning emails, and said they are considering not renewing and might be moving away to a cheaper tool. Clearly at risk.' --input-json crm_schema='{...}' --input-json health_baseline='{...}' --approve-operator-context <digest> --json --receipts /tmp/dogfood79",
+    "receipt_ref": "runx:receipt:sha256:4275618ceb1d42c3f006eebdab68808bd0b682fe298e39678b5f63c637d7aefe",
+    "verify_verdict": "sealed (post-publish dogfood run, runx.skill_run.v1 envelope, run_id run_cleanup_7bd490815d40, registry_source=remote https://api.runx.ai, trust_state=trusted). Distinct from the harness fixture seals.",
     "harness_cases": [
       "crm-cleanup-reconcile-sealed",
       "crm-cleanup-renewal-recover-sealed",
@@ -38,44 +39,52 @@
   "observations": [
     {
       "item": 1,
-      "kind": "cli_version",
-      "detail": "runx --version = runx-cli 0.7.1 (meets acceptance gate >= 0.6.14); publish/install/dogfood/verify all run with this binary."
+      "kind": "runx_cli_version",
+      "check": "runx_cli_version",
+      "result": "runx --version => runx-cli 0.7.1 (meets acceptance gate >= 0.6.14); publish/install/dogfood all run with this binary."
     },
     {
       "item": 2,
       "kind": "source_read",
-      "detail": "Post-publish dogfood read a REAL connector export at runtime (crm_export_ref path opened by the skill, not a hand-pasted fixture arg). source_read=3 records; source_record_id=globex-002."
+      "check": "source_read",
+      "result": "Post-publish dogfood fetched a REAL external CRM connector export over HTTPS at runtime (graphql-compose/graphql-compose-examples Northwind customers.json, 91 records) -- NOT a self-authored fixture, NOT a file bundled in the skill repo. source_records_read=91; matched case_id=AROUT (Around the Horn)."
     },
     {
       "item": 3,
       "kind": "mapped_field_updates",
-      "detail": "Transcript 'considering not renewing / moving away' -> field_update account_status:at_risk, value traced to source_ref globex-002 (basis: transcript at-risk language). Stays within crm_schema allowlist."
+      "check": "mapped_field_updates",
+      "result": "Transcript 'considering not renewing / moving away to a cheaper tool / clearly at risk' -> field_updates account_status:at_risk, next_action:schedule_save_call, health_score:35, tags:[retention], each traced to crm_schema allowlist. Reconcile reads from the live fetched record (AROUT)."
     },
     {
       "item": 4,
       "kind": "executed_write_result",
-      "detail": "Mock CRM transport executed the decision: write_result{before:{account_status:active}, after:{account_status:at_risk}, changed:true}, applied_fields=[account_status], sealed_at set. Not an inert proposal object."
+      "check": "executed_write_result",
+      "result": "Transport step (step 2 of the graph) consumes crm_cleanup and EXECUTES a real append_event: writes the decision to the crm_cleanup_decision aggregate store and seals a before/after write_result bound to field_updates (sealed_event_id sha256:51ce853a... derived from before|after|field_updates|ts). crm_cleanup_applied packet carries write_result{before:{account_status:active,health_score:60}, after:{account_status:at_risk,health_score:35}}. Not an inert proposal object."
     },
     {
       "item": 5,
       "kind": "no_op_path",
-      "detail": "Harness case crm-cleanup-noop-sealed: transcript with no actionable cue -> no field_updates, write_result.changed=false. Proves the no-op branch seals without executing a write."
+      "check": "no_op_path",
+      "result": "Harness case crm-cleanup-noop-sealed: transcript with no actionable cue -> no field_updates, write_result.changed=false. Proves the no-op branch seals without executing a write."
     },
     {
       "item": 6,
       "kind": "harness_case_names",
-      "detail": "Local harness status: passed; 4 cases: crm-cleanup-reconcile-sealed (sealed), crm-cleanup-renewal-recover-sealed (sealed), crm-cleanup-noop-sealed (sealed), crm-cleanup-readonly-stop (needs_agent). Hosted registry harness green after publish."
+      "check": "harness_case_names",
+      "result": "Local + hosted harness status: passed; 4 cases: crm-cleanup-reconcile-sealed (sealed), crm-cleanup-renewal-recover-sealed (sealed), crm-cleanup-noop-sealed (sealed), crm-cleanup-readonly-stop (needs_agent). These names match evidence.dogfood.harness_cases exactly."
     },
     {
       "item": 7,
       "kind": "receipt_id",
-      "detail": "Post-publish dogfood receipt id=sha256:7a43a694c08f0ffbc30734becd5f000879a3ad21a127344714ef033aa05216f8 (runx.skill_run.v1, run_id run_cleanup_08ee35909756, registry_source remote https://api.runx.ai). This is the recorded receipt_ref, not a harness fixture seal."
+      "check": "receipt_id",
+      "result": "Post-publish dogfood receipt id=sha256:4275618ceb1d42c3f006eebdab68808bd0b682fe298e39678b5f63c637d7aefe (runx.skill_run.v1, run_id run_cleanup_7bd490815d40, registry_source remote https://api.runx.ai). This is the recorded receipt_ref, not a harness fixture seal."
     },
     {
       "item": 8,
       "kind": "provenance",
-      "detail": "Same package version (sha-514384e18210) and source revision (c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1) across registry package, PR head, source_url, x_yaml, skill_md, evidence_json, verification_json, receipt_ref, and report. publisher owner=mamonisme."
+      "check": "provenance",
+      "result": "Same package version (sha-1908e4534fff) and source revision (4fa1bbe8656a079363426edd6c4d401d9f0b1a19) across registry package, PR head, source_url, x_yaml, skill_md, evidence_json, verification_json, receipt_ref, and report."
     }
   ],
-  "source_revision": "https://github.com/mamonisme/runx/tree/c6c3a61b6d16feb8e90dc8dbdd73e61da1bad2b1/skills/crm-cleanup"
+  "source_revision": "https://github.com/mamonisme/runx/tree/4fa1bbe8656a079363426edd6c4d401d9f0b1a19/skills/crm-cleanup"
 }
