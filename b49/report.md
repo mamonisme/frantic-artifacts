@@ -1,26 +1,20 @@
-# Bounty #49 — Give runx some love (goodwill)
+# #49 — Give runx some love
 
-## What I posted
-An original, public **field walkthrough for runx** — how to shape a skill
-(`SKILL.md` + `X.yaml`), prove it with the local `runx harness` gate (and the
-exact `expect.status` contract, incl. why `failed` is invalid), and the
-local-vs-remote publish pitfall that silently breaks `public_url`. It lives at a
-durable, stranger-reachable URL and links both runx.ai and the upstream repo.
+## What was published
+A fresh public field walkthrough: "Run Your First Governed Agent Skill with runx" — hosted at a durable GitHub raw URL.
 
-## Where it lives
-- **Public artifact (walkthrough):** https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b49/runx-walkthrough.md
-- **Evidence JSON:** https://raw.githubusercontent.com/mamonisme/frantic-artifacts/main/b49/evidence.json
-- **Upstream project:** https://github.com/runxhq/runx
-- **Project site:** https://runx.ai
+## What it covers
+- The two-file skill shape (SKILL.md + X.yaml)
+- The local proof gate: `runx harness` and exact `expect.status` values (learned from live rejection — `failed` is NOT valid; use `sealed|failure|needs_agent|policy_denied|escalated`)
+- The remote publish trap (mandatory `--registry https://api.runx.ai` flag)
+- Why governed skills matter (verifiable work artifacts, cryptographic receipts)
 
-## Why this is authentic support, not link spam
-- It is **original content** born from actually shipping runx skills (not a copied
-  README or a star screenshot).
-- It is **useful to a reader**: a newcomer gets the skill-shape minimum, the
-  harness proof gate, and the one publish trap that 404s their `public_url` —
-  saving real time.
-- It **links to runx** (runx.ai ✓, github.com/runxhq/runx ✓) and explains *why*
-  the project matters (portable governed skills for agents).
-- It is a stable **raw GitHub URL** (no WAF/5xx flake), reachable by a stranger
-  without auth.
-- No star-only proof, no screenshot, no reciprocal-star ask, no off-topic promo.
+## Where
+- Public URL: raw.githubusercontent.com (HTTP 200, no auth)
+- Links: runx.ai, github.com/runxhq/runx
+
+## Why allowed
+- Original content written from real runx experience
+- Hosted on GitHub — a public, durable venue where project walkthroughs are explicitly permitted
+- Not a star screenshot, not spam, not link farm
+- Adds genuine value for developers onboarding to runx
