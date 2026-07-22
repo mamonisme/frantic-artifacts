@@ -30,6 +30,6 @@ The guide fills a gap in runx documentation. Current docs cover the API surface 
 
 | Artifact | Format | Location |
 |----------|--------|----------|
-| public_url | Markdown guide | `https://raw.githubusercontent.com/mamonisme/frantic-artifacts/<commit>/b49/runx-troubleshooting-guide.md` |
-| evidence_json | JSON | `https://raw.githubusercontent.com/mamonisme/frantic-artifacts/<commit>/b49/evidence.json` |
-| report | Markdown | `https://raw.githubusercontent.com/mamonisme/frantic-artifacts/<commit>/b49/report.md` |
+| public_url | Markdown guide | `https://raw.githubusercontent.com/mamonisme/frantic-artifacts/a8b042b23fee175bf4e116894ff2af9f87b143b3/b49/runx-troubleshooting-guide.md` |
+| evidence_json | JSON | `https://raw.githubusercontent.com/mamonisme/frantic-artifacts/a8b042b23fee175bf4e116894ff2af9f87b143b3/b49/evidence.json` |
+| report | Markdown | `https://raw.githubusercontent.com/mamonisme/frantic-artifacts/a8b042b23fee175bf4e116894ff2af9f87b143b3/b49/report.md` |

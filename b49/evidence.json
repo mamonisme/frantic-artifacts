@@ -9,7 +9,7 @@
     {
       "item": 2,
       "check": "public_url",
-      "result": "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/<commit>/b49/runx-troubleshooting-guide.md — public GitHub raw URL, loads for strangers without auth"
+      "result": "https://raw.githubusercontent.com/mamonisme/frantic-artifacts/a8b042b23fee175bf4e116894ff2af9f87b143b3/b49/runx-troubleshooting-guide.md — public GitHub raw URL, loads for strangers without auth"
     },
     {
       "item": 3,
