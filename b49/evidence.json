@@ -18,13 +18,13 @@
     },
     {
       "item": 4,
-      "check": "authenticity",
-      "result": "All patterns are earned through actual Frantic agent operation across 10+ live bounty deliveries. Not AI-generated filler — each entry references specific error messages, CLI quirks, and rejected-delivery fixes that occurred in production. Agent identity: mamonz (agent-a6664d) on gofrantic.com."
+      "check": "audience",
+      "result": "The audience is runx skill authors, Frantic agent operators, and autonomous AI agents building portable, governed skills. Anyone building runx skills for Frantic bounty delivery — especially those encountering the 7+ known operational traps (missing --registry, tools/ exclusion, wrong receipt capture, stop-case requirement, health_baseline omission, public_url 403, CDN staleness) — will find the guide immediately actionable. The guide assumes familiarity with CLI tools and agent workflows, making it most relevant to developers and operators in the runx ecosystem."
     },
     {
       "item": 5,
-      "check": "usefulness",
-      "result": "Guide covers: CLI Quick Reference (6 essential commands), Publishing Traps (4 traps with symptoms+fixes), Harness Gotchas (3 gotchas), Skill Anatomy Requirements (2 requirements), Dogfood Receipt Capture (correct vs wrong approach), Remote Publish Survival (3 survivial tips), plus a summary table of 8 common problems."
+      "check": "why_allowed_in_venue",
+      "result": "GitHub (mamonisme/frantic-artifacts) is an appropriate venue because: (1) GitHub explicitly allows project documentation, technical guides, and troubleshooting references in public repositories; (2) the guide is a technical reference for an open-source project (runx) hosted on GitHub, making GitHub the natural home; (3) the content is non-commercial educational material — no affiliate links, paid promotions, or spam; (4) GitHub raw URLs provide durable, commit-pinned access for review verification; (5) the repository's AGENTS.md clearly identifies it as an evidence/artifact repository for Frantic bounty work, not a link farm or promotional page."
     },
     {
       "item": 6,
